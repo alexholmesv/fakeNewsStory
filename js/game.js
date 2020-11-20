@@ -19,7 +19,6 @@ function showTextNode(textNodeIndex) {
   imageElement.src = textNode.img;
   if (textNode.subtext === undefined ) {
     subTextElement.style.visibility = "hidden"
-    //subTextElement.remove();
   } else {
     subTextElement.style.visibility = "visible"
     subTextElement.innerText = textNode.subtext;
@@ -50,15 +49,14 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement('button');
       button.innerText = option.text
+      button.addEventListener('click', () => selectOption(option))
+      optionButtonsElement.appendChild(button)
       if (option.flag === "warning") {
-        button.classList.remove('btn')
         button.classList.add('warning-btn')
       }
       else {
         button.classList.add('btn')
       }
-      button.addEventListener('click', () => selectOption(option))
-      optionButtonsElement.appendChild(button)
     }
   })
 }
@@ -198,7 +196,7 @@ const textNodes = [
   },
   {
     id:6,
-    img: 'img/makes_sense.jpg',
+    img: 'img/woman-cat.jpg',
     text: "Wow, highly emotional AND conspiratorial! \n " +
       "This game might be just what you need, " +
       "if you would only let me ruffle your tinfoil hat. ",
