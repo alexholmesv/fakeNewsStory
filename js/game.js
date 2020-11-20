@@ -21,25 +21,25 @@ function showTextNode(textNodeIndex) {
     subTextElement.style.visibility = "hidden"
     //subTextElement.remove();
   } else {
+    subTextElement.style.visibility = "visible"
     subTextElement.innerText = textNode.subtext;
-
   }
 
-  if (textNode.link1 != null) {
+  if (textNode.link1 === undefined) {
+    link1Element.style.visibility = "hidden"
+  }
+    else {
+    link1Element.style.visibility = "visible"
     link1Element.innerHTML = textNode.link1
     link1Element.setAttribute('href', textNode.link1)
   }
-    else {
-      //link1Element.style.visibility = "hidden"
-      link1Element.remove()
-  }
-  if (textNode.link2 != null) {
-    link2Element.innerHTML = textNode.link2
-    link2Element.setAttribute('href', textNode.link2)
+  if (textNode.link2 === undefined) {
+    link2Element.style.visibility = "hidden"
   }
   else {
-    //link2Element.style.visibility = "hidden"
-    link2Element.remove()
+    link2Element.style.visibility = "visible"
+    link2Element.innerHTML = textNode.link2
+    link2Element.setAttribute('href', textNode.link2)
   }
 
   while (optionButtonsElement.firstChild) {
@@ -203,6 +203,8 @@ const textNodes = [
       "This game might be just what you need, " +
       "if you would only let me ruffle your tinfoil hat. ",
     subtext: "You may leave the game anytime just by closing this window.",
+    link1: "www.test.com",
+    link2: "www.test.cl",
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
