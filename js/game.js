@@ -4,7 +4,7 @@ const imageElement = document.getElementById('image');
 const subTextElement = document.getElementById('subtext');
 const link1Element = document.getElementById('link1');
 const link2Element = document.getElementById('link2');
-
+const ffButtonElement = document.getElementById('ff-button');
 
 let state = {}
 
@@ -15,13 +15,13 @@ function startGame() {
 
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
-  textElement.innerText = textNode.text;
+  textElement.innerHTML = textNode.text;
   imageElement.src = textNode.img;
   if (textNode.subtext === undefined ) {
     subTextElement.style.visibility = "hidden"
   } else {
     subTextElement.style.visibility = "visible"
-    subTextElement.innerText = textNode.subtext;
+    subTextElement.innerHTML = textNode.subtext;
   }
 
   if (textNode.link1 === undefined) {
@@ -32,6 +32,7 @@ function showTextNode(textNodeIndex) {
     link1Element.innerHTML = textNode.link1
     link1Element.setAttribute('href', textNode.link1)
   }
+
   if (textNode.link2 === undefined) {
     link2Element.style.visibility = "hidden"
   }
@@ -39,6 +40,12 @@ function showTextNode(textNodeIndex) {
     link2Element.style.visibility = "visible"
     link2Element.innerHTML = textNode.link2
     link2Element.setAttribute('href', textNode.link2)
+  }
+
+  if (textNode.ff === undefined ) {
+    ffButtonElement.style.visibility = "hidden"
+  } else {
+    ffButtonElement.style.visibility = "visible"
   }
 
   while (optionButtonsElement.firstChild) {
@@ -80,24 +87,22 @@ const textNodes = [
   {
     id:1,
     img: 'img/logic.jpg',
-    text: "Welcome! \n " +
-      "Before we start, have you completed the survey on the link below? \n " +
-      "It will only take a few minutes, and it will help us with out research.",
-    subtext: "The link will open in a new window. \n " +
-      "Please do NOT refresh or leave this page while you play, or you will have to start all over again.",
-    link1: "http://www.google.com",
+    text: "<h2>Welcome!</h2><p>Before we start, have you completed the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
+    subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
+    link1: "[Insert link to survey here]",
     link2: "",
     options: [
       {
-        text: "Let's do this!",
+        text: "Let's do this! Start the game.",
         nextText: 2,
       },
     ]
   },
   {
     id:2,
-    img: 'img/logic.jpg',
-    text: "Information is made by people, and all people are flawed, imperfect beings. \n Therefore, all information is flawed and imperfect.",
+    img: 'img/people.jpg',
+    text: "<p>Information is made by people, and all people are flawed, imperfect beings. <br> " +
+      "Therefore, all information is flawed and imperfect.</p>",
     options: [
       {
         text: "That sounds...logical.",
@@ -117,7 +122,7 @@ const textNodes = [
       {
         text: "(Skip)",
         flag: "warning",
-        setState: { notnew: true },
+        requiredState: (currentState) => currentState.notnew,
         nextText: 7,
       }
     ]
@@ -125,7 +130,7 @@ const textNodes = [
   {
     id:3,
     img: 'img/makes_sense.jpg',
-    text: "So, if all information is flawed, that means that all information is equally unreliable.",
+    text: "<p>So, if all information is flawed, that means that all information is equally unreliable.</p>",
     options: [
       {
         text: "Non-sequitur, my friend.",
@@ -147,16 +152,14 @@ const textNodes = [
   {
     id:4,
     img: 'img/makes_sense.jpg',
-    text: "Just joking. You didn't think I was serious, did you? \n Of course, all information has some sort of bias, but that doesn't mean all information is created equal. \n " +
-      "\n " +
-      "Some sources can be much more reliable than others.",
+    text: "<p>Just joking. You didn't think I was being serious, did you? <br><br> Of course, all information has some sort of bias, but that doesn't mean all information is created equal.<br> <span class='highlight'>Certain sources are much more reliable than others.</span></p>",
     options: [
       {
         text: "Go on, I'm listening.",
         nextText: 5,
       },
       {
-        text: "Everything is fake news! The industrial-military complex, the reptilians, the Illuminati and the corporations are out manipulate us!",
+        text: "Everything is fake news! \n The industrial-military complex, the reptilians, and the Illuminati are out to get us!",
         requiredState: (currentState) => currentState.emotional,
         setState: { conspirational: true, emotional: true },
         nextText: 5,
@@ -171,9 +174,9 @@ const textNodes = [
   },
   {
     id:5,
-    img: 'img/makes_sense.jpg',
-    text: "There is so much information out there. SO much. Knowing who to trust is getting harder everyday, \n " +
-      "yet there is only so much us robots can do for you. At the end, the capacity to filter out the noise is up to YOU.",
+    img: 'img/doge.jpg',
+    text: "<p>There is so much information out there, and knowing who to trust is getting harder everyday.<br>" +
+      "Yet there is only so much us other people can do for you. At the end, the capacity to filter out the noise is up to <i>you</i>.",
     options: [
       {
         text: "Come on, just tell me what to think!",
@@ -181,7 +184,7 @@ const textNodes = [
         nextText: 7,
       },
       {
-        text: "You're just a Deep State goon who wants to impose his liberal agenda on me.",
+        text: "You're just a Deep State goon \n who wants to impose his liberal agenda on me.",
         requiredState: (currentState) => currentState.conspirational,
         setState: { emotional: true },
         nextText: 6,
@@ -197,9 +200,8 @@ const textNodes = [
   {
     id:6,
     img: 'img/woman-cat.jpg',
-    text: "Wow, highly emotional AND conspiratorial! \n " +
-      "This game might be just what you need, " +
-      "if you would only let me ruffle your tinfoil hat. ",
+    text: "<p>Wow, highly emotional AND conspiratorial! <br> This game might be just what you need, if you would only let me ruffle your tinfoil hat.</p>",
+    setState: { notnew: true },
     subtext: "You may leave the game anytime just by closing this window.",
     link1: "www.test.com",
     link2: "www.test.cl",
@@ -209,6 +211,19 @@ const textNodes = [
         nextText: 2,
       },
       ]
+  },
+  {
+    id:7,
+    img: 'img/people.jpg',
+    text: "<p>We're going to practice a few tricks to help you master your fact-checking and logical skills</p>",
+    setState: { notnew: true },
+    subtext: "<p>Next time you play, you may skip the introduction and start from this page</p>",
+    options: [
+      {
+        text: "Wonderful",
+        nextText: 8,
+      },
+    ]
   }
 ]
 
