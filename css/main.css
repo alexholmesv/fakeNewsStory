@@ -121,12 +121,13 @@ body {
 
 .ff-btn {
   border: none;
-  background-color: white;
+  background-color: darkgrey;
+  border-radius: 5px;
 }
 
 .ff-btn:hover {
   border: 1px solid black;
-  border-radius: 5px;
+
 }
 
 .fade-in {

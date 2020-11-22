@@ -68,6 +68,10 @@ function showTextNode(textNodeIndex) {
   })
 }
 
+function fastForward(scene) {
+  showTextNode(scene);
+}
+
 function showOption(option) {
   return option.requiredState == null || option.requiredState(state)
 }
@@ -87,6 +91,7 @@ const textNodes = [
   {
     id:1,
     img: 'img/logic.jpg',
+    ff: true,
     text: "<h2>Welcome!</h2><p>Before we start, have you completed the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
     subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
     link1: "[Insert link to survey here]",
