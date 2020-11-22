@@ -180,8 +180,8 @@ const textNodes = [
   {
     id:5,
     img: 'img/doge.jpg',
-    text: "<p>There is so much information out there, and knowing who to trust is getting harder everyday.<br>" +
-      "Yet there is only so much us other people can do for you. At the end, the capacity to filter out the noise is up to <i>you</i>.",
+    text: "<p>Unfortunately, on the Internet there is no magic recipe to tell fact from fiction, <br>or what is a half-truth put out there just to confuse you.<br><br>" +
+      "Yet, there is only so much us other people can do for you. <br>At the end of the day, <span class='highlight'> the capacity to filter out the noise is up to <i>you</i>.</span></p>",
     options: [
       {
         text: "Come on, just tell me what to think!",
@@ -219,10 +219,10 @@ const textNodes = [
   {
     id:7,
     img: 'img/people.jpg',
-    text: "<p>We're going to practice a few tricks to help you master your fact-checking and logical skills.</p>",
+    text: "<p>We're going to show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {
-        text: "Wonderful",
+        text: "Yes, please!",
         nextText: 9,
       },
     ]
@@ -230,11 +230,11 @@ const textNodes = [
   {
     id:8,
     img: 'img/people.jpg',
-    text: "<p>Well I can't tell you what to think! <br> But I CAN show you a few tricks to help you master your fact-checking and logical skills.</p>",
+    text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {
-        text: "Take me there",
-        nextText: 8,
+        text: "Yes, all right. Show me.",
+        nextText: 9,
       },
     ]
   },

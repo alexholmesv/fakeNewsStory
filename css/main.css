@@ -90,6 +90,7 @@ body {
   padding: 5px 10px;
   color: white;
   outline: none;
+  box-shadow: 0 1px #999;
 }
 
 .warning-btn {
@@ -102,9 +103,13 @@ body {
 }
 
 .btn:hover {
-  border: 1.5px solid black;
-  transform: scale(1.01);
-  transition: all .2s ease-in-out;
+  background-color: hsl(200, 100%, 30%);
+}
+
+.btn:active {
+  background-color: hsl(200, 100%, 30%);
+  box-shadow: 0 0px dimgrey;
+  transform: translateY(1px);
 }
 
 .warning-btn:hover {
@@ -121,8 +126,9 @@ body {
 
 .ff-btn {
   border: none;
-  background-color: darkgrey;
+  background-color: #333;
   border-radius: 5px;
+  font-size: 6px;
 }
 
 .ff-btn:hover {
@@ -135,7 +141,6 @@ body {
   -webkit-animation: fadeIn ease 1s;
   -moz-animation: fadeIn ease 1s;
   -o-animation: fadeIn ease 1s;
-  -ms-animation: fadeIn ease 1s;
 }
 @keyframes fadeIn {
   0% {
