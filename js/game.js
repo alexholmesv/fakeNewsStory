@@ -13,6 +13,7 @@ function startGame() {
   showTextNode(1)
 }
 
+
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
   textElement.innerHTML = textNode.text;
@@ -164,7 +165,7 @@ const textNodes = [
         nextText: 5,
       },
       {
-        text: "Everything is fake news! \n The industrial-military complex, the reptilians, and the Illuminati are out to get us!",
+        text: "Everything is fake news! \n It's all a plot by the liberal media, the reptilians, and the Illuminati.",
         requiredState: (currentState) => currentState.emotional,
         setState: { conspirational: true, emotional: true },
         nextText: 5,
@@ -181,7 +182,7 @@ const textNodes = [
     id:5,
     img: 'img/doge.jpg',
     text: "<p>Unfortunately, on the Internet there is no magic recipe to tell fact from fiction, <br>or what is a half-truth put out there just to confuse you.<br><br>" +
-      "Yet, there is only so much us other people can do for you. <br>At the end of the day, <span class='highlight'> the capacity to filter out the noise is up to <i>you</i>.</span></p>",
+      "At the end of the day, <span class='highlight'> the capacity to filter out the noise is up to <i>you</i>.</span></p>",
     options: [
       {
         text: "Come on, just tell me what to think!",
@@ -189,7 +190,7 @@ const textNodes = [
         nextText: 8,
       },
       {
-        text: "You're just a Deep State goon \n who wants to impose his liberal agenda on me.",
+        text: "Nice try, but I can tell a Deep State goon when I see one. \n You just want to impose your liberal agenda on me.",
         requiredState: (currentState) => currentState.conspirational,
         setState: { emotional: true },
         nextText: 6,
@@ -204,11 +205,10 @@ const textNodes = [
   {
     id:6,
     img: 'img/woman-cat.jpg',
-    text: "<p>Wow, highly emotional AND conspiratorial! <br> This game might be just what you need, if you would only let me ruffle your tinfoil hat.</p>",
+    text: "<p>Come on now.<br> This game might be just what you need, if you would only let me ruffle your tinfoil hat.</p>",
     setState: { notnew: true },
-    subtext: "You may leave the game anytime just by closing this window.",
-    link1: "www.test.com",
-    link2: "www.test.cl",
+    subtext: "<p>You may leave the game anytime just by closing this window.</p><br>" +
+      "<a href='http://www.google.com'>Take me to Google</a>",
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
@@ -218,7 +218,7 @@ const textNodes = [
   },
   {
     id:7,
-    img: 'img/people.jpg',
+    img: 'img/fact-checking.jpg',
     text: "<p>We're going to show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {
@@ -229,7 +229,7 @@ const textNodes = [
   },
   {
     id:8,
-    img: 'img/people.jpg',
+    img: 'img/fact-checking.jpg',
     text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {

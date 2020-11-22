@@ -24,6 +24,7 @@ body {
   box-shadow: 0 0 10px 2px;
 }
 
+
 .box-text {
   text-align: center;
   font-size: 14px;
@@ -44,6 +45,10 @@ body {
   text-align: center;
   font-size: 11px;
   color: yellow;
+}
+
+.box-subtext a {
+  color: lightblue;
 }
 
 .box-link {
@@ -108,7 +113,7 @@ body {
 
 .btn:active {
   background-color: hsl(200, 100%, 30%);
-  box-shadow: 0 0px dimgrey;
+  box-shadow: 0 0 dimgrey;
   transform: translateY(1px);
 }
 
