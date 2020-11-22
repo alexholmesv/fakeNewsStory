@@ -186,7 +186,7 @@ const textNodes = [
       {
         text: "Come on, just tell me what to think!",
         setState: { lazy: true },
-        nextText: 7,
+        nextText: 8,
       },
       {
         text: "You're just a Deep State goon \n who wants to impose his liberal agenda on me.",
@@ -195,8 +195,7 @@ const textNodes = [
         nextText: 6,
       },
       {
-        text: "But HOW do I do this?",
-        requiredState: (currentState) => currentState.conspirational,
+        text: "So how do I do this?",
         setState: { emotional: true },
         nextText: 7,
       },
@@ -220,13 +219,39 @@ const textNodes = [
   {
     id:7,
     img: 'img/people.jpg',
-    text: "<p>We're going to practice a few tricks to help you master your fact-checking and logical skills</p>",
-    setState: { notnew: true },
-    subtext: "<p>Next time you play, you may skip the introduction and start from this page</p>",
+    text: "<p>We're going to practice a few tricks to help you master your fact-checking and logical skills.</p>",
     options: [
       {
         text: "Wonderful",
+        nextText: 9,
+      },
+    ]
+  },
+  {
+    id:8,
+    img: 'img/people.jpg',
+    text: "<p>Well I can't tell you what to think! <br> But I CAN show you a few tricks to help you master your fact-checking and logical skills.</p>",
+    options: [
+      {
+        text: "Take me there",
         nextText: 8,
+      },
+    ]
+  },
+  {
+    id:9,
+    img: 'img/truth_lies.jpg',
+    text: "<h2>What would you like to know?</h2>",
+    setState: { notnew: true },
+    subtext: "<p>Next time you play, you may skip the introduction and start from this page.</p>",
+    options: [
+      {
+        text: "I want to know who is telling the truth",
+        nextText: 10,
+      },
+      {
+        text: "I want to know who is lying",
+        nextText: 11,
       },
     ]
   }
