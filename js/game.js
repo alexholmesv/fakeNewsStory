@@ -13,10 +13,15 @@ function startGame() {
   showTextNode(1)
 }
 
+//Show text and images within the container
 function showTextNode(textNodeIndex) {
+  //Get the text node number
   const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
+  //Show the main text
   textElement.innerHTML = textNode.text;
+  //Show the image
   imageElement.src = textNode.img;
+  //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
     subTextElement.style.visibility = "hidden"
   } else {
@@ -24,6 +29,7 @@ function showTextNode(textNodeIndex) {
     subTextElement.innerHTML = textNode.subtext;
   }
 
+  //Shows the link1 and 2 nodes, if there are any, if not hides the divs
   if (textNode.link1 === undefined) {
     link1Element.style.visibility = "hidden"
   }
@@ -42,12 +48,14 @@ function showTextNode(textNodeIndex) {
     link2Element.setAttribute('href', textNode.link2)
   }
 
+  //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)
   if (textNode.ff === undefined ) {
     ffButtonElement.style.visibility = "hidden"
   } else {
     ffButtonElement.style.visibility = "visible"
   }
 
+  //Removes the buttons that don't have any options (min 1 and max 4 buttons)
   while (optionButtonsElement.firstChild) {
     optionButtonsElement.removeChild(optionButtonsElement.firstChild)
   }
@@ -219,10 +227,14 @@ const textNodes = [
   {
     id:7,
     img: 'img/fact-checking.jpg',
-    text: "<p>We're going to show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
+    text: "<p>We're going to discuss a few strategies to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {
         text: "Yes, please!",
+        nextText: 9,
+      },
+      {
+        text: "Uh-huh",
         nextText: 9,
       },
     ]
@@ -230,7 +242,7 @@ const textNodes = [
   {
     id:8,
     img: 'img/fact-checking.jpg',
-    text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few tricks to help you master your fact-checking and logical skills when looking at information online.</p>",
+    text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few strategies to help you master your fact-checking and logical skills when looking at information online.</p>",
     options: [
       {
         text: "Yes, all right. Show me.",
