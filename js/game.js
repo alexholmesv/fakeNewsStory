@@ -17,9 +17,9 @@ function startGame() {
 function showTextNode(textNodeIndex) {
   //Get the text node number
   const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
-  //Show the main text
+  //Show the main text in the scene content
   textElement.innerHTML = textNode.text;
-  //Show the image
+  //Change image src specified for the scene
   imageElement.src = textNode.img;
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
@@ -49,11 +49,7 @@ function showTextNode(textNodeIndex) {
   }
 
   //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)
-  if (textNode.ff === undefined ) {
-    ffButtonElement.style.visibility = "hidden"
-  } else {
-    ffButtonElement.style.visibility = "visible"
-  }
+ (textNode.ff === undefined ) ? ffButtonElement.style.visibility = "hidden": ffButtonElement.style.visibility = "visible"
 
   //Removes the buttons that don't have any options (min v 1 and max 4 buttons)
   while (optionButtonsElement.firstChild) {
@@ -100,7 +96,10 @@ function selectOption(option) {
   showTextNode(nextTextNodeId)
 }
 
-//MAIN STORY SCRIPT. Text for main text, options for buttons, img for src. Subtext, link1 and link2 are optional.
+//MAIN STORY SCRIPT.
+// Text for main text, options for buttons, img for src.
+// Subtext, link1 and link2 are optional.
+// Ff true to add skip scene arrows.
 const textNodes = [
   {
     id:1,
