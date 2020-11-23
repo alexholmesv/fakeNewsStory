@@ -13,7 +13,6 @@ function startGame() {
   showTextNode(1)
 }
 
-
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
   textElement.innerHTML = textNode.text;
@@ -71,6 +70,7 @@ function showTextNode(textNodeIndex) {
 
 function fastForward(scene) {
   showTextNode(scene);
+  saveNode()
 }
 
 function showOption(option) {
