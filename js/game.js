@@ -55,11 +55,12 @@ function showTextNode(textNodeIndex) {
     ffButtonElement.style.visibility = "visible"
   }
 
-  //Removes the buttons that don't have any options (min 1 and max 4 buttons)
+  //Removes the buttons that don't have any options (min v 1 and max 4 buttons)
   while (optionButtonsElement.firstChild) {
     optionButtonsElement.removeChild(optionButtonsElement.firstChild)
   }
 
+  //Loop on button options, changing text and number of options depending on the scene
   textNode.options.forEach(option => {
     if (showOption(option)) {
       const button = document.createElement('button');
@@ -76,15 +77,18 @@ function showTextNode(textNodeIndex) {
   })
 }
 
+//Fast forward to scene function for debugging, scene number hardcoded in HTML
 function fastForward(scene) {
   showTextNode(scene);
   saveNode()
 }
 
+//Shows options depending on the required state
 function showOption(option) {
   return option.requiredState == null || option.requiredState(state)
 }
 
+//Loads the next scene and text, -1 for game over
 function selectOption(option) {
   const nextTextNodeId = option.nextText
   state = Object.assign(state, option.setState)
@@ -96,6 +100,7 @@ function selectOption(option) {
   showTextNode(nextTextNodeId)
 }
 
+//MAIN STORY SCRIPT. Text for main text, options for buttons, img for src. Subtext, link1 and link2 are optional.
 const textNodes = [
   {
     id:1,
@@ -120,6 +125,7 @@ const textNodes = [
     options: [
       {
         text: "That sounds...logical.",
+        //Sets state
         setState: { logical: true },
         nextText: 3,
       },
@@ -136,6 +142,7 @@ const textNodes = [
       {
         text: "(Skip)",
         flag: "warning",
+        //Only shows this option if the required state has been saved
         requiredState: (currentState) => currentState.notnew,
         nextText: 7,
       }
@@ -269,4 +276,6 @@ const textNodes = [
   }
 ]
 
+
+//Starts game
 startGame();
