@@ -181,7 +181,7 @@ const textNodes = [
       {
         text: "Everything is fake news! \n It's all a plot by the liberal media, the reptilians, and the Illuminati.",
         requiredState: (currentState) => currentState.emotional,
-        setState: { conspirational: true, emotional: true },
+        setState: { conspiratorial: true, emotional: true },
         nextText: 5,
       },
       {
@@ -205,7 +205,7 @@ const textNodes = [
       },
       {
         text: "Nice try, but I can tell a Deep State goon when I see one. \n You just want to impose your liberal agenda on me.",
-        requiredState: (currentState) => currentState.conspirational,
+        requiredState: (currentState) => currentState.conspiratorial,
         setState: { emotional: true },
         nextText: 6,
       },
@@ -269,7 +269,167 @@ const textNodes = [
       },
       {
         text: "I want to know who is lying",
+        nextText: 100,
+      },
+    ]
+  },
+  {
+    id:10,
+    img: 'img/dad_covid.png',
+    text: "<h2>I just got this message from my dad. <br> Did you know there is a study that says that the new COVID-19 vaccine doesn't work?</h2>",
+    subtext:"<div>You may open the link above <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    options: [
+      {
+        text: "Well, it doesn't surprise me. I mean, the vaccine is very new after all",
         nextText: 11,
+      },
+      {
+        text: "Doesn't it? Where did this come from?",
+        setState: { doubtful: true },
+        nextText: 11,
+      },
+      {
+        text: "Of course it doesn't, COVID is a hoax.",
+        setState: { conspiratorial: true },
+        nextText: 11,
+      },
+    ]
+  },
+  {
+    id:11,
+    img: 'img/dad_covid.png',
+    text: "<h2>I mean, I didn't open the link, but his message pretty much sums it up. " +
+      "<br>There's no way I'm getting this vaccine, it's going to do more harm than good.</h2>",
+    subtext:"<div>You may open the link <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    options: [
+      {
+        text: "So you think this message is true just because your dad forwarded it?",
+        nextText: 12,
+      },
+      {
+        text: "Well, if you checked you would see that the study doesn't actually say that",
+        setState: { logical: true },
+        nextText: 22,
+      },
+      {
+        text: "It's common sense man. This vaccine has been rushed into the market, it's all a sham to make money",
+        nextText: 12,
+      },
+    ]
+  },
+  {
+    id:12,
+    img: 'img/dad_covid.png',
+    text: "<h2>Actually, my dad also says that common sense is the least common of all senses. " +
+      "<br><br> Perhaps I should open that link after all and read what it says...</h2>",
+    subtext:"<div>You may open the link <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    options: [
+      {
+        text: "Please do",
+        nextText: 13,
+      },
+      {
+        text: "Wait! It could be a virus! I think we've established your dad cannot be trusted",
+        nextText: 13,
+      },
+      {
+        text: "Open it, it doesn't really matter anyway.",
+        requiredState: (currentState) => currentState.conspiratorial,
+        nextText: 13,
+      },
+    ]
+  },
+  {
+    id:13,
+    img: 'img/covid_news.png',
+    text: "<h2>Ah. So what the article actually says is that the COVID vaccines could <i>eventually</i> become ineffective once the virus gets used to them.</h2>",
+    options: [
+      {
+        text: "But that doesn't mean that they are ineffective, especially now.",
+        requiredState: (currentState) => currentState.logical,
+        nextText: 22,
+      },
+      {
+        text: "So, your dad's been lying?",
+        nextText: 14,
+      },
+    ]
+  },
+  {
+    id:14,
+    img: 'img/covid_news.png',
+    text: "<h2>Hey! My dad's not lying. One of his friends sent him this on Whatsapp and he shared it because he cares deeply about Covid.</h2>",
+    options: [
+      {
+        text: "I'm sure he means well, but you have to admit that the message is super misleading.",
+        nextText: 22,
+      },
+      {
+        text: "Who cares if the message is inaccurate? Vaccines are evil, that's the truth.",
+        requiredState: (currentState) => currentState.conspiratorial,
+        nextText: 15,
+      },
+    ]
+  },
+  {
+    id:15,
+    img: 'img/covid_news.png',
+    text: "<h2>So, in order to find the truth we need to say things that aren't true? That makes no sense.</h2>",
+    options: [
+      {
+        text: "All I'm saying is that I think vaccines are evil, " +
+          "so I will support anything that vaguely reaffirms by own beliefs and prejudices, even when it's a blatant lie.",
+        nextText: 16,
+      },
+      {
+        text: "Well, if you put it that way...no, I guess not.",
+        nextText: 22,
+      },
+    ]
+  },
+  {
+    id:16,
+    img: 'img/covid_news.png',
+    text: "<h2>So, you will choose to believe a lie just because it's convenient to reaffirm your prejudices?</h2>",
+    options: [
+      {
+        text: "I just don't want to be wrong! I want to win!",
+        nextText: 17,
+      },
+      {
+        text: "I was just joking. Of course, being deceitful on purpose doesn't really help anybody.",
+        nextText: 22,
+      },
+    ]
+  },
+  {
+    id:17,
+    img: 'img/covid_news.png',
+    text: "<h2>Well, by actively choosing to believe lies, no one really wins, now do they?</h2>",
+    options: [
+      {
+        text: "I guess not",
+        nextText: 22,
+      },
+      {
+        text: "OK whatever, let's change the subject",
+        nextText: 22,
+      },
+    ]
+  },
+  {
+    id:22, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>Right, so, the message my dad sent was a bit dubious. Forget about that part. <br> " +
+      "But the study in the link seems pretty legit, right?</h2>",
+    options: [
+      {
+        text: "That's actually a good question. Who is behind this information?",
+        nextText: 10,
+      },
+      {
+        text: "I will never trust anything your dad says, and neither should you.",
+        nextText: 10,
       },
     ]
   }
