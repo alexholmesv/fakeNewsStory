@@ -5,11 +5,14 @@ const subTextElement = document.getElementById('subtext');
 const link1Element = document.getElementById('link1');
 const link2Element = document.getElementById('link2');
 const ffButtonElement = document.getElementById('ff-button');
+const scoreElement = document.getElementById('score');
 
 let state = {}
+let balance = 0
 
 function startGame() {
   state = {}
+  balance = 0
   showTextNode(1)
 }
 
@@ -21,6 +24,8 @@ function showTextNode(textNodeIndex) {
   textElement.innerHTML = textNode.text;
   //Change image src specified for the scene
   imageElement.src = textNode.img;
+  //Shows the current score
+  scoreElement.innerText = "Score: " + balance
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
     subTextElement.style.visibility = "hidden"
@@ -61,8 +66,10 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement('button');
       button.innerText = option.text
+      button.addEventListener("click", () => addPoints(option.optionValue))
       button.addEventListener('click', () => selectOption(option))
       optionButtonsElement.appendChild(button)
+      //change button type and color
       if (option.flag === "warning") {
         button.classList.add('warning-btn')
       }
@@ -84,6 +91,12 @@ function showOption(option) {
   return option.requiredState == null || option.requiredState(state)
 }
 
+//Add points
+function addPoints(points){
+  parseInt(points)
+  balance += points
+}
+
 //Loads the next scene and text, -1 for game over
 function selectOption(option) {
   const nextTextNodeId = option.nextText
@@ -95,6 +108,7 @@ function selectOption(option) {
   state = Object.assign(state, option.setState)
   showTextNode(nextTextNodeId)
 }
+
 
 //MAIN STORY SCRIPT.
 // Text for main text, options for buttons, img for src.
@@ -112,6 +126,7 @@ const textNodes = [
     options: [
       {
         text: "Let's do this! Start the game.",
+        optionValue: 0,
         nextText: 2,
       },
     ]
@@ -126,21 +141,25 @@ const textNodes = [
         text: "That sounds...logical.",
         //Sets state
         setState: { logical: true },
+        optionValue: 1,
         nextText: 3,
       },
       {
         text: "Sure, I hate people too.",
         setState: { emotional: true },
+        optionValue: -1,
         nextText: 3,
       },
       {
         text: "Well, true...but what's your point?",
         setState: { doubtful: true },
+        optionValue: 0,
         nextText: 3,
       },
       {
         text: "(Skip)",
         flag: "warning",
+        optionValue: 0,
         //Only shows this option if the required state has been saved
         requiredState: (currentState) => currentState.notnew,
         nextText: 7,
@@ -155,16 +174,19 @@ const textNodes = [
       {
         text: "Non-sequitur, my friend.",
         requiredState: (currentState) => currentState.logical,
+        optionValue: 2,
         setState: { logical: false },
         nextText: 4,
       },
       {
         text: "That's right! Trust no-one!",
         setState: { doubtful: true },
+        optionValue: -1,
         nextText: 4,
       },
       {
         text: "Wait, what? No.",
+        optionValue: 0,
         nextText: 4,
       },
     ]
@@ -176,16 +198,19 @@ const textNodes = [
     options: [
       {
         text: "Go on, I'm listening.",
+        optionValue: 0,
         nextText: 5,
       },
       {
         text: "Everything is fake news! \n It's all a plot by the liberal media, the reptilians, and the Illuminati.",
         requiredState: (currentState) => currentState.emotional,
+        optionValue: 0,
         setState: { conspiratorial: true, emotional: true },
         nextText: 5,
       },
       {
         text: "But how do I know who is telling the truth?",
+        optionValue: 0,
         requiredState: (currentState) => currentState.doubtful,
         setState: { emotional: false },
         nextText: 5,
@@ -200,6 +225,7 @@ const textNodes = [
     options: [
       {
         text: "Come on, just tell me what to think!",
+        optionValue: 0,
         setState: { lazy: true },
         nextText: 8,
       },
@@ -207,11 +233,13 @@ const textNodes = [
         text: "Nice try, but I can tell a Deep State goon when I see one. \n You just want to impose your liberal agenda on me.",
         requiredState: (currentState) => currentState.conspiratorial,
         setState: { emotional: true },
+        optionValue: 0,
         nextText: 6,
       },
       {
         text: "So how do I do this?",
         setState: { emotional: true },
+        optionValue: 0,
         nextText: 7,
       },
     ]
@@ -226,6 +254,7 @@ const textNodes = [
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
+        optionValue: 0,
         nextText: 2,
       },
       ]
@@ -237,10 +266,12 @@ const textNodes = [
     options: [
       {
         text: "Yes, please!",
+        optionValue: 0,
         nextText: 9,
       },
       {
         text: "Uh-huh",
+        optionValue: 0,
         nextText: 9,
       },
     ]
@@ -252,6 +283,7 @@ const textNodes = [
     options: [
       {
         text: "Yes, all right. Show me.",
+        optionValue: 0,
         nextText: 9,
       },
     ]
@@ -265,10 +297,12 @@ const textNodes = [
     options: [
       {
         text: "I want to know who is telling the truth",
+        optionValue: 0,
         nextText: 10,
       },
       {
         text: "I want to know who is lying",
+        optionValue: 0,
         nextText: 100,
       },
     ]
@@ -281,16 +315,19 @@ const textNodes = [
     options: [
       {
         text: "Well, it doesn't surprise me. I mean, the vaccine is very new after all",
+        optionValue: 0,
         nextText: 11,
       },
       {
         text: "Doesn't it? Where did this come from?",
         setState: { doubtful: true },
+        optionValue: 0,
         nextText: 11,
       },
       {
         text: "Of course it doesn't, COVID is a hoax.",
         setState: { conspiratorial: true },
+        optionValue: 0,
         nextText: 11,
       },
     ]
@@ -304,15 +341,18 @@ const textNodes = [
     options: [
       {
         text: "So you think this message is true just because your dad forwarded it?",
+        optionValue: 0,
         nextText: 12,
       },
       {
         text: "Well, if you checked you would see that the study doesn't actually say that",
         setState: { logical: true },
+        optionValue: 0,
         nextText: 22,
       },
       {
         text: "It's common sense man. This vaccine has been rushed into the market, it's all a sham to make money",
+        optionValue: 0,
         nextText: 12,
       },
     ]
@@ -326,15 +366,18 @@ const textNodes = [
     options: [
       {
         text: "Please do",
+        optionValue: 0,
         nextText: 13,
       },
       {
         text: "Wait! It could be a virus! I think we've established your dad cannot be trusted",
+        optionValue: 0,
         nextText: 13,
       },
       {
         text: "Open it, it doesn't really matter anyway.",
         requiredState: (currentState) => currentState.conspiratorial,
+        optionValue: 0,
         nextText: 13,
       },
     ]
@@ -347,10 +390,12 @@ const textNodes = [
       {
         text: "But that doesn't mean that they are ineffective, especially now.",
         requiredState: (currentState) => currentState.logical,
+        optionValue: 0,
         nextText: 22,
       },
       {
         text: "So, your dad's been lying?",
+        optionValue: 0,
         nextText: 14,
       },
     ]
@@ -362,10 +407,12 @@ const textNodes = [
     options: [
       {
         text: "I'm sure he means well, but you have to admit that the message is super misleading.",
+        optionValue: 0,
         nextText: 22,
       },
       {
         text: "Who cares if the message is inaccurate? Vaccines are evil, that's the truth.",
+        optionValue: 0,
         requiredState: (currentState) => currentState.conspiratorial,
         nextText: 15,
       },
@@ -373,12 +420,14 @@ const textNodes = [
   },
   {
     id:15,
-    img: 'img/covid_news.png',
+    img: 'img/side_eye.png',
     text: "<h2>So, in order to find the truth we need to say things that aren't true? That makes no sense.</h2>",
+    optionValue: 0,
     options: [
       {
         text: "All I'm saying is that I think vaccines are evil, " +
           "so I will support anything that vaguely reaffirms by own beliefs and prejudices, even when it's a blatant lie.",
+        optionValue: -2,
         nextText: 16,
       },
       {
@@ -389,30 +438,34 @@ const textNodes = [
   },
   {
     id:16,
-    img: 'img/covid_news.png',
+    img: 'img/side_eye.png',
     text: "<h2>So, you will choose to believe a lie just because it's convenient to reaffirm your prejudices?</h2>",
     options: [
       {
         text: "I just don't want to be wrong! I want to win!",
+        optionValue: -1,
         nextText: 17,
       },
       {
         text: "I was just joking. Of course, being deceitful on purpose doesn't really help anybody.",
+        optionValue: 1,
         nextText: 22,
       },
     ]
   },
   {
     id:17,
-    img: 'img/covid_news.png',
+    img: 'img/side_eye.png',
     text: "<h2>Well, by actively choosing to believe lies, no one really wins, now do they?</h2>",
     options: [
       {
         text: "I guess not",
+        optionValue: 1,
         nextText: 22,
       },
       {
         text: "OK whatever, let's change the subject",
+        optionValue: 0,
         nextText: 22,
       },
     ]
@@ -420,19 +473,128 @@ const textNodes = [
   {
     id:22, //FROM 11-B
     img: 'img/covid_news.png',
-    text: "<h2>Right, so, the message my dad sent was a bit dubious. Forget about that part. <br> " +
+    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. Forget about that part. <br> " +
       "But the study in the link seems pretty legit, right?</h2>",
     options: [
       {
         text: "That's actually a good question. Who is behind this information?",
-        nextText: 10,
+        optionValue: 0,
+        nextText: 23,
       },
       {
-        text: "I will never trust anything your dad says, and neither should you.",
-        nextText: 10,
+        text: "I will never trust your dad ever again.",
+        optionValue: 0,
+        setState: { hater: true },
+        nextText: 14,
       },
     ]
-  }
+  },
+  {
+    id:23, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>Do you mean the news site or the actual study?</h2>",
+    options: [
+      {
+        text: "I want to know about the news site",
+        optionValue: 0,
+        nextText: 24,
+      },
+      {
+        text: "I want to know about the study",
+        optionValue: 0,
+        nextText: 26,
+      },
+    ]
+  },
+  {
+    id:24, //FROM 11-B
+    img: 'img/about-us.png',
+    text: "<h2>Well, you can normally see information about a site in their 'About' section.<br>" +
+      "If there isn't one you can always search for their name in a search engine.<br>" +
+      "You could even do both things</h2>",
+    subtext: "<div>You may open a new tab and google about Scitech Daily, " +
+      "or look at their 'About Us' page <a href='https://scitechdaily.com/about-us/' target='_blank'>here</a>",
+    options: [
+      {
+        text: "I checked their About page and they seem legit.",
+        optionValue: 0,
+        nextText: 26,
+      },
+      {
+        text: "But what if they're lying?",
+        optionValue: 0,
+        nextText: 25,
+      },
+    ]
+  },
+  {
+    id:24, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>I suppose we could always check what <i>other people</i> say about them.</h2>",
+    options: [
+      {
+        text: "That makes sense. We've got to know who they are",
+        optionValue: 0,
+        nextText: 26,
+      },
+      {
+        text: "And if no one else has anything to say about them?",
+        optionValue: 0,
+        nextText: 25,
+      },
+    ]
+  },
+  {
+    id:25, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>Well, if no one's heard of them before, and no one has anything to say about them...</h2>",
+    options: [
+      {
+        text: "...then they're probably not a very authoritative source.",
+        optionValue: 1,
+        nextText: 26,
+      },
+      {
+        text: "...they're probably aliens.",
+        optionValue: 0,
+        nextText: 26,
+      },
+    ]
+  },
+  {
+    id:26, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>What? No man, they're probably not a very trustworthy site.</h2>",
+    options: [
+      {
+        text: "I know, I was just being funny.",
+        optionValue: 0,
+        nextText: 26,
+      },
+      {
+        text: "If you say so [they're definitely aliens].",
+        optionValue: -1,
+        nextText: 26,
+      },
+    ]
+  },
+  {
+    id:26, //FROM 11-B
+    img: 'img/covid_news.png',
+    text: "<h2>So apparently, this study was published by Penn State University.</h2>",
+    options: [
+      {
+        text: "Should we .",
+        optionValue: 0,
+        nextText: 26,
+      },
+      {
+        text: "If you say so [they're definitely aliens].",
+        optionValue: -1,
+        nextText: 26,
+      },
+    ]
+  },
 ]
 
 

@@ -24,6 +24,10 @@ body {
   box-shadow: 0 0 10px 2px;
 }
 
+.scorebox {
+  width: 100px;
+  color: cornflowerblue;
+}
 
 .box-text {
   text-align: center;
@@ -134,7 +138,7 @@ body {
   border: none;
   background-color: #333;
   border-radius: 5px;
-  font-size: 6px;
+  font-size: 10px;
 }
 
 .ff-btn:hover {
