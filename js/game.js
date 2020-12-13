@@ -120,9 +120,8 @@ const textNodes = [
     img: 'img/logic.jpg',
     ff: true,
     text: "<h2>Welcome!</h2><p>Before we start, have you completed the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
-    subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
-    link1: "[Insert link to survey here]",
-    link2: "",
+    subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
+      "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank' style='font-size: 16px'>Click here to access the survey</a>",
     options: [
       {
         text: "Let's do this! Start the game.",
@@ -432,6 +431,7 @@ const textNodes = [
       },
       {
         text: "Well, if you put it that way...no, I guess not.",
+        optionValue: 0,
         nextText: 22,
       },
     ]
@@ -471,10 +471,10 @@ const textNodes = [
     ]
   },
   {
-    id:22, //FROM 11-B
+    id:22,
     img: 'img/covid_news.png',
-    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. Forget about that part. <br> " +
-      "But the study in the link seems pretty legit, right?</h2>",
+    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
+      "However, the study in the link seems pretty legit, right?</h2>",
     options: [
       {
         text: "That's actually a good question. Who is behind this information?",
@@ -482,7 +482,7 @@ const textNodes = [
         nextText: 23,
       },
       {
-        text: "I will never trust your dad ever again.",
+        text: "No one should trust your dad. Ever.",
         optionValue: 0,
         setState: { hater: true },
         nextText: 14,
@@ -490,7 +490,7 @@ const textNodes = [
     ]
   },
   {
-    id:23, //FROM 11-B
+    id:23,
     img: 'img/covid_news.png',
     text: "<h2>Do you mean the news site or the actual study?</h2>",
     options: [
@@ -502,12 +502,12 @@ const textNodes = [
       {
         text: "I want to know about the study",
         optionValue: 0,
-        nextText: 26,
+        nextText: 27,
       },
     ]
   },
   {
-    id:24, //FROM 11-B
+    id:24,
     img: 'img/about-us.png',
     text: "<h2>Well, you can normally see information about a site in their 'About' section.<br>" +
       "If there isn't one you can always search for their name in a search engine.<br>" +
@@ -516,9 +516,9 @@ const textNodes = [
       "or look at their 'About Us' page <a href='https://scitechdaily.com/about-us/' target='_blank'>here</a>",
     options: [
       {
-        text: "I checked their About page and they seem legit.",
+        text: "I checked their About page and they seem legit. Let's find out more about the study.",
         optionValue: 0,
-        nextText: 26,
+        nextText: 27,
       },
       {
         text: "But what if they're lying?",
@@ -528,7 +528,7 @@ const textNodes = [
     ]
   },
   {
-    id:24, //FROM 11-B
+    id:24,
     img: 'img/covid_news.png',
     text: "<h2>I suppose we could always check what <i>other people</i> say about them.</h2>",
     options: [
@@ -545,14 +545,14 @@ const textNodes = [
     ]
   },
   {
-    id:25, //FROM 11-B
+    id:25,
     img: 'img/covid_news.png',
     text: "<h2>Well, if no one's heard of them before, and no one has anything to say about them...</h2>",
     options: [
       {
-        text: "...then they're probably not a very authoritative source.",
+        text: "...then they're probably not a very authoritative source. Yeah, let's move on to the study.",
         optionValue: 1,
-        nextText: 26,
+        nextText: 27,
       },
       {
         text: "...they're probably aliens.",
@@ -562,36 +562,147 @@ const textNodes = [
     ]
   },
   {
-    id:26, //FROM 11-B
+    id:26,
     img: 'img/covid_news.png',
-    text: "<h2>What? No man, they're probably not a very trustworthy site.</h2>",
+    text: "<h2>What? No man, it means that they're probably not very trustworthy.</h2>",
     options: [
       {
         text: "I know, I was just being funny.",
         optionValue: 0,
-        nextText: 26,
+        nextText: 27,
       },
       {
-        text: "If you say so [they're definitely aliens].",
+        text: "If you say so [it's definitely aliens].",
+        setState: { aliens : true },
         optionValue: -1,
-        nextText: 26,
+        nextText: 27,
       },
     ]
   },
   {
-    id:26, //FROM 11-B
+    id:27, //START BRANCH
     img: 'img/covid_news.png',
-    text: "<h2>So apparently, this study was published by Penn State University.</h2>",
+    text: "<h2>According to this news article, the study was published by Penn State University.</h2>",
     options: [
       {
-        text: "Should we .",
+        text: "Should we look for the original paper?",
         optionValue: 0,
-        nextText: 26,
+        nextText: 28,
       },
       {
-        text: "If you say so [they're definitely aliens].",
-        optionValue: -1,
-        nextText: 26,
+        text: "What do other people say about this study?",
+        optionValue: 0,
+        nextText: 29,
+      },
+      {
+        text: "I bet it's all a lie. Aliens are tricky like that.",
+        optionValue: 0,
+        requiredState: (currentState) => currentState.aliens,
+        nextText: 30,
+      },
+    ]
+  },
+  {
+    id:28, //FROM 27
+    img: 'img/covid_news.png',
+    text: "<h2>That's actually a great strategy. Luckily, the author of this article was kind enough to provide a link to the paper." +
+      "<br>It's right there at the bottom of the page.</h2>",
+    subtext: "<div>You may open the link <a href='https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001000' target='_blank'>here</a></div>",
+    options: [
+      {
+        text: "I can only see the abstract, but it says pretty much the same as the article.",
+        optionValue: 0,
+        nextText: 32,
+      },
+      {
+        text: "This paper is boring. Do I really need to read it?",
+        optionValue: 0,
+        nextText: 31,
+      },
+    ]
+  },
+  {
+    id:29, //FROM 27
+    img: 'img/covid_news.png',
+    text: "<h2>That's a great idea! Checking for other sources can help us know more about this story. " +
+      "<br>Let's google something along the lines of 'penn state university + covid + resistance' </h2>",
+    subtext: "<div><a href='https://cutt.ly/qhPLptJ' target='_blank'>Click to Google 'penn state university + covid + resistance'</a></div>",
+    options: [
+      {
+        text: "OK, let's Google this",
+        optionValue: 0,
+        nextText: 33,
+      },
+    ]
+  },
+  {
+    id:30, //FROM 27
+    img: 'img/covid_news.png',
+    text: "<h2>ENOUGH WITH THE ALIENS! Seriously. Can we move on?</h2>",
+    options: [
+      {
+        text: "All right, calm down! [Are you sure you're not an alien?]",
+        optionValue: 0,
+        nextText: 32,
+      },
+    ]
+  },
+  {
+    id:31, //FROM 27
+    img: 'img/covid_news.png',
+    text: "<h2>Well no. That's the whole point of scientific journalism: to let us know about what a paper says without actually having to read the paper." +
+      "<br>But can we trust the source?</h2>",
+    options: [
+      {
+        text: "Well, we would have to make sure the news site is legit. And this one seems to be OK.",
+        optionValue: 0,
+        nextText: 34,
+      },
+      {
+        text: "I would stay wary of every source anyway. Reading the paper abstract will always give me a better idea of what's going on.",
+        optionValue: 1,
+        nextText: 34,
+      },
+    ]
+  },
+  {
+    id:33, //FROM 29
+    img: 'img/google_study.png',
+    text: "<h2>OK, there are lots of hits for this study in the first Google page, and they all seem to say the same thing.</h2>",
+    options: [
+      {
+        text: "So, most other sites say this study is about what the story actually claims. It checks out.",
+        optionValue: 1,
+        nextText: 35,
+      },
+      {
+        text: "So what? Everyone else could be lying too.",
+        optionValue: 0,
+        nextText: 34,
+      },
+    ]
+  },
+  {
+    id:34, //FROM 29
+    img: 'img/covid_news.png',
+    text: "<h2>I guess. And so could you.</h2>",
+    options: [
+      {
+        text: "I need to know who is lying to me.",
+        optionValue: 0,
+        nextText: 35,
+      },
+    ]
+  },
+  {
+    id:35, //FROM 29
+    img: 'img/covid_news.png',
+    text: "<h2>To know if someone is lying, or at least not being truthful, we should first try to understand WHAT they are saying. [END FOR NOW]</h2>",
+    options: [
+      {
+        text: "END",
+        optionValue: 0,
+        nextText: 10,
       },
     ]
   },
