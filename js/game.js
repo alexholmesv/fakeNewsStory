@@ -281,7 +281,7 @@ const textNodes = [
       {
         text: "I want to know who is lying",
         optionValue: 0,
-        nextText: 100,
+        nextText: 35,
       },
     ]
   },
@@ -697,14 +697,14 @@ const textNodes = [
   },
   {
     id:35, //FROM 29
-    img: 'img/covid_news.png',
+    img: 'img/whatdoyoumean.gif',
     text: "<h2>To know if someone is lying, or at least not being truthful, " +
       "we should first try to understand WHAT they are saying. [END FOR NOW]</h2>",
     options: [
       {
         text: "END SECTION - RESTART LOOP",
         optionValue: 0,
-        nextText: 10,
+        nextText: 9,
       },
     ]
   },
