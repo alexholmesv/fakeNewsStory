@@ -297,7 +297,7 @@ const textNodes = [
         nextText: 11,
       },
       {
-        text: "Doesn't it? Where did this come from?",
+        text: "What do you mean it doesn't work? Are you sure this information is correct?",
         setState: { doubtful: true },
         optionValue: 0,
         nextText: 11,
@@ -323,7 +323,7 @@ const textNodes = [
         nextText: 12,
       },
       {
-        text: "Well, if you checked you would see that the study doesn't actually say that",
+        text: "Well, if you read the actual study you would see that it doesn't actually say that",
         setState: { logical: true },
         optionValue: 0,
         nextText: 22,
@@ -440,12 +440,12 @@ const textNodes = [
       {
         text: "I guess not",
         optionValue: 1,
-        nextText: 22,
+        nextText: 36,
       },
       {
         text: "OK whatever, let's change the subject",
         optionValue: 0,
-        nextText: 22,
+        nextText: 36,
       },
     ]
   },
@@ -464,12 +464,12 @@ const textNodes = [
         text: "No one should trust your dad. Ever.",
         optionValue: 0,
         setState: { hater: true },
-        nextText: 14,
+        nextText: 37,
       },
     ]
   },
   {
-    id:23,
+    id:23,  //START BRANCH - STUDY OR NEWS SITE
     img: 'img/covid_news.png',
     text: "<h2>Do you mean the news site or the actual study?</h2>",
     options: [
@@ -560,7 +560,7 @@ const textNodes = [
   },
   {
     id:27, //START BRANCH
-    img: 'img/covid_news.png',
+    img: 'img/pennstate.png',
     text: "<h2>According to this news article, the study was published by Penn State University.</h2>",
     options: [
       {
@@ -583,7 +583,7 @@ const textNodes = [
   },
   {
     id:28, //FROM 27
-    img: 'img/covid_news.png',
+    img: 'img/goodidea.gif',
     text: "<h2>That's actually a great strategy. Luckily, the author of this article was kind enough to provide a link to the paper." +
       "<br>It's right there at the bottom of the page.</h2>",
     subtext: "<div>You may open the link <a href='https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001000' target='_blank'>here</a></div>",
@@ -591,7 +591,7 @@ const textNodes = [
       {
         text: "I can only see the abstract, but it says pretty much the same as the article.",
         optionValue: 0,
-        nextText: 32,
+        nextText: 38,
       },
       {
         text: "This paper is boring. Do I really need to read it?",
@@ -603,7 +603,7 @@ const textNodes = [
   {
     id:29, //FROM 27
     img: 'img/covid_news.png',
-    text: "<h2>That's a great idea! Checking for other sources can help us know more about this story. " +
+    text: "<h2>Checking for other sources could help us know more about this story. " +
       "<br>Let's google something along the lines of 'penn state university + covid + resistance' </h2>",
     subtext: "<div><a href='https://cutt.ly/qhPLptJ' target='_blank'>Click to Google 'penn state university + covid + resistance'</a></div>",
     options: [
@@ -645,6 +645,23 @@ const textNodes = [
     ]
   },
   {
+    id:32, //FROM 30 - ALIENS
+    img: 'img/covid_news.png',
+    text: "<h2>According to this news article, the study was published by Penn State University.</h2>",
+    options: [
+      {
+        text: "Should we look for the original paper?",
+        optionValue: 0,
+        nextText: 28,
+      },
+      {
+        text: "What do other people say about this study?",
+        optionValue: 0,
+        nextText: 29,
+      },
+    ]
+  },
+  {
     id:33, //FROM 29
     img: 'img/google_study.png',
     text: "<h2>OK, there are lots of hits for this study in the first Google page, and they all seem to say the same thing.</h2>",
@@ -652,7 +669,7 @@ const textNodes = [
       {
         text: "So, most other sites say this study is about what the story actually claims. It checks out.",
         optionValue: 1,
-        nextText: 35,
+        nextText: 38,
       },
       {
         text: "So what? Everyone else could be lying too.",
@@ -664,10 +681,15 @@ const textNodes = [
   {
     id:34, //FROM 29
     img: 'img/covid_news.png',
-    text: "<h2>I guess. And so could you.</h2>",
+    text: "<h2>So, does everything check out?</h2>",
     options: [
       {
-        text: "I need to know who is lying to me.",
+        text: "I still need to check a few things",
+        optionValue: 0,
+        nextText: 23,
+      },
+      {
+        text: "Yes, I've had enough. Let's talk about something else.",
         optionValue: 0,
         nextText: 35,
       },
@@ -676,12 +698,92 @@ const textNodes = [
   {
     id:35, //FROM 29
     img: 'img/covid_news.png',
-    text: "<h2>To know if someone is lying, or at least not being truthful, we should first try to understand WHAT they are saying. [END FOR NOW]</h2>",
+    text: "<h2>To know if someone is lying, or at least not being truthful, " +
+      "we should first try to understand WHAT they are saying. [END FOR NOW]</h2>",
     options: [
       {
-        text: "END",
+        text: "END SECTION - RESTART LOOP",
         optionValue: 0,
         nextText: 10,
+      },
+    ]
+  },
+  {
+    id:36, //FROM 17 - RESOLVE NO ONE SHOULD TRUST YOUR DAD LOOP
+    img: 'img/covid_news.png',
+    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
+      "However, the study in the link seems pretty legit, right?</h2>",
+    options: [
+      {
+        text: "I guess so. We would have to check if this is not a study paid for by the Illuminati first.",
+        optionValue: -1,
+        nextText: 23,
+      },
+      {
+        text: "Well, it would help to know who's behind this information.",
+        optionValue: 1,
+        nextText: 23,
+      },
+    ]
+  },
+  {
+    id:37, //FROM 22 - REDIRECTED FROM NO ONE SHOULD TRUST YOUR DAD
+    img: 'img/covid_news.png',
+    text: "<h2>OK, my dad wasn't so much lying as his message was a bit off.</h2>",
+    options: [
+      {
+        text: "His message had nothing to do with the study. Shame on him.",
+        optionValue: 0,
+        nextText: 36,
+      },
+      {
+        text: "His message had nothing to do with the study.",
+        optionValue: 0,
+        nextText: 36,
+      },
+      {
+        text: "His message had nothing to do with the study. I admire that. ",
+        optionValue: -1,
+        nextText: 36,
+      },
+    ]
+  },
+  {
+    id:38, //FROM 30 - RESOLVING PAPER LOOP
+    img: 'img/covid_news.png',
+    text: "<h2>OK, so we know about the original paper already and it checks out. What should we do next?</h2>",
+    options: [
+      {
+        text: "Probably find out what other people are saying about this study?",
+        optionValue: 0,
+        nextText: 29,
+      },
+      {
+        text: "Make sure that it's not all a plot by the liberal media?",
+        optionValue: 0,
+        nextText: 39,
+      },
+      {
+        text: "We seem to be going round in circles, let's move on.",
+        optionValue: 0,
+        nextText: 39,
+      },
+    ]
+  },
+  {
+    id:39, //FROM 30 - RESOLVING PAPER LOOP
+    img: 'img/covid_news.png',
+    text: "<h2>Very funny. Still, you make a good point. What if people have found out this study is junk?</h2>",
+    options: [
+      {
+        text: "Yes, it could be junk science.",
+        optionValue: 0,
+        nextText: 29,
+      },
+      {
+        text: "Let's see what other people have to say about this study.",
+        optionValue: 0,
+        nextText: 29,
       },
     ]
   },
