@@ -2,8 +2,6 @@ const textElement = document.getElementById('text');
 const optionButtonsElement = document.getElementById('option-buttons');
 const imageElement = document.getElementById('image');
 const subTextElement = document.getElementById('subtext');
-const link1Element = document.getElementById('link1');
-const link2Element = document.getElementById('link2');
 const ffButtonElement = document.getElementById('ff-button');
 const scoreElement = document.getElementById('score');
 
@@ -32,25 +30,6 @@ function showTextNode(textNodeIndex) {
   } else {
     subTextElement.style.visibility = "visible"
     subTextElement.innerHTML = textNode.subtext;
-  }
-
-  //Shows the link1 and 2 nodes, if there are any, if not hides the divs
-  if (textNode.link1 === undefined) {
-    link1Element.style.visibility = "hidden"
-  }
-    else {
-    link1Element.style.visibility = "visible"
-    link1Element.innerHTML = textNode.link1
-    link1Element.setAttribute('href', textNode.link1)
-  }
-
-  if (textNode.link2 === undefined) {
-    link2Element.style.visibility = "hidden"
-  }
-  else {
-    link2Element.style.visibility = "visible"
-    link2Element.innerHTML = textNode.link2
-    link2Element.setAttribute('href', textNode.link2)
   }
 
   //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)
