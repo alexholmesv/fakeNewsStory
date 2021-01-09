@@ -11,6 +11,9 @@ let balance = 0
 function startGame() {
   state = {}
   balance = 0
+  logic = 0
+  emotion = 0
+  sceptic = 0
   showTextNode(1)
 }
 
@@ -45,7 +48,9 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement('button');
       button.innerText = option.text
-      button.addEventListener("click", () => addPoints(option.optionValue))
+      button.addEventListener("click", () => addLogicPoints(option.logicValue))
+      button.addEventListener("click", () => addEmotionPoints(option.emotionValue))
+      button.addEventListener("click", () => addScepticPoints(option.scepticValue))
       button.addEventListener('click', () => selectOption(option))
       optionButtonsElement.appendChild(button)
       //change button type and color
@@ -70,10 +75,22 @@ function showOption(option) {
   return option.requiredState == null || option.requiredState(state)
 }
 
-//Add points
-function addPoints(points){
+//Add Logic points
+function addLogicPoints(points){
   parseInt(points)
-  balance += points
+  logic += points
+}
+
+//Add Emotion points
+function addEmotionPoints(points){
+  parseInt(points)
+  emotion += points
+}
+
+//Add Scpetic points
+function addScepticPoints(points){
+  parseInt(points)
+  sceptic += points
 }
 
 //Loads the next scene and text, -1 for game over
@@ -98,13 +115,15 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, have you completed the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
     subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
       "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank' style='font-size: 16px'>Click here to access the survey</a>",
     options: [
       {
         text: "Let's do this! Start the game.",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 2,
       },
     ]
@@ -119,19 +138,25 @@ const textNodes = [
         text: "That sounds...logical.",
         //Sets state
         setState: { logical: true },
-        optionValue: 1,
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 3,
       },
       {
         text: "Sure, I hate people too.",
         setState: { emotional: true },
-        optionValue: -1,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
         nextText: 3,
       },
       {
         text: "Well, true...but what's your point?",
         setState: { doubtful: true },
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
         nextText: 3,
       },
       {
@@ -152,19 +177,25 @@ const textNodes = [
       {
         text: "Non-sequitur, my friend.",
         requiredState: (currentState) => currentState.logical,
-        optionValue: 2,
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         setState: { logical: false },
         nextText: 4,
       },
       {
         text: "That's right! Trust no-one!",
         setState: { doubtful: true },
-        optionValue: -1,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
         nextText: 4,
       },
       {
         text: "Wait, what? No.",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
         nextText: 4,
       },
     ]

@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5f3e490-f0b3-4d2a-9083-6a2e75dd2d4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/whatdoyoumean.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/game.js" afterDir="false" />
     </list>
@@ -64,7 +63,9 @@
       <workItem from="1606574436215" duration="2432000" />
       <workItem from="1607767442462" duration="8744000" />
       <workItem from="1607801305234" duration="19769000" />
-      <workItem from="1607928746527" duration="4254000" />
+      <workItem from="1607928746527" duration="5995000" />
+      <workItem from="1610207715267" duration="39000" />
+      <workItem from="1610207786709" duration="2035000" />
     </task>
     <servers />
   </component>
@@ -85,35 +86,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605790125219">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.813@0.25.1440.813" timestamp="1605790125219" />
-    <state x="458" y="182" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605790475905">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state x="458" y="182" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.813@0.25.1440.813" timestamp="1605790475905" />
-    <state width="1379" height="194" key="GridCell.Tab.0.bottom" timestamp="1606574403066">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state width="1379" height="194" key="GridCell.Tab.0.bottom/0.25.1440.813@0.25.1440.813" timestamp="1606574403066" />
-    <state width="1379" height="194" key="GridCell.Tab.0.center" timestamp="1606574403061">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state width="1379" height="194" key="GridCell.Tab.0.center/0.25.1440.813@0.25.1440.813" timestamp="1606574403061" />
-    <state width="1379" height="194" key="GridCell.Tab.0.left" timestamp="1606574403052">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state width="1379" height="194" key="GridCell.Tab.0.left/0.25.1440.813@0.25.1440.813" timestamp="1606574403052" />
-    <state width="1379" height="194" key="GridCell.Tab.0.right" timestamp="1606574403062">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state width="1379" height="194" key="GridCell.Tab.0.right/0.25.1440.813@0.25.1440.813" timestamp="1606574403062" />
-    <state x="359" y="162" width="670" height="676" key="search.everywhere.popup" timestamp="1606071625367">
-      <screen x="0" y="25" width="1440" height="813" />
-    </state>
-    <state x="359" y="162" width="670" height="676" key="search.everywhere.popup/0.25.1440.813/1440.25.1920.1055@0.25.1440.813" timestamp="1606071625367" />
   </component>
 </project>
