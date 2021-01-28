@@ -29,9 +29,9 @@ function showTextNode(textNodeIndex) {
   scoreElement.innerHTML = "Score: " + balance
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
-    subTextElement.style.visibility = "hidden"
+    subTextElement.style.display = "none"
   } else {
-    subTextElement.style.visibility = "visible"
+    subTextElement.style.display = "block"
     subTextElement.innerHTML = textNode.subtext;
   }
 
@@ -115,8 +115,8 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete the survey on the link below? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
-    subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
+    subtext: "<p'>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
       "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank'>Click here to access the survey</a>",
     options: [
       {
