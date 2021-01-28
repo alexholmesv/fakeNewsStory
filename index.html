@@ -7,31 +7,48 @@
   <link rel="stylesheet" href="css/all.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <script defer src="js/all.js"></script>
   <script defer src="js/game.js"></script>
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <div class="container">
-    <div id="score" class="scorebox">SCORE</div>
-    <div class="fill fade-in">
-      <img id="image" class="box-img fade-in" src="">
+<div class="head">
+  <div class="headerobjectswrapper">
+
+    <header>What the Fact</header>
+  </div>
+
+  <div class="subhead"><div id="score" class="scorebox">SCORE</div></div>
+</div>
+
+<div class="container">
+
+
+  <div class="fill fade-in">
+    <img id="image" class="box-img fade-in" src="">
+  </div>
+  <div class="flexcontainer">
+    <div class="textcontainer">
+      <div id="text" class="box-text fade-in">Text</div>
+      <div id="subtext" class="box-subtext">Additional text</div>
     </div>
-    <div id="text" class="box-text fade-in">Text</div>
-    <div id="subtext" class="box-subtext">Additional text</div>
     <div id="option-buttons" class="btn-grid">
       <button class="">Option 1</button>
       <button class="">Option 2</button>
       <button class="">Option 3</button>
       <button class="">Option 4</button>
     </div>
-    <div id="ff-button" class="ff-btn-grid">
-      <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9)"></i></button>
-    </div>
+  </div>
+  <div id="ff-button" class="ff-btn-grid">
+    <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9)"></i></button>
   </div>
 
+</div>
+
+<img class="border" src="img/border.png" alt="">
 
 
 </body>

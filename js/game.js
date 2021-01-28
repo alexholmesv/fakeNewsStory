@@ -26,7 +26,7 @@ function showTextNode(textNodeIndex) {
   //Change image src specified for the scene
   imageElement.src = textNode.img;
   //Shows the current score
-  scoreElement.innerText = "Score: " + balance
+  scoreElement.innerHTML = "Score: " + balance
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
     subTextElement.style.visibility = "hidden"
@@ -36,7 +36,7 @@ function showTextNode(textNodeIndex) {
   }
 
   //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)
- (textNode.ff === undefined ) ? ffButtonElement.style.visibility = "hidden": ffButtonElement.style.visibility = "visible"
+  (textNode.ff === undefined ) ? ffButtonElement.style.visibility = "hidden": ffButtonElement.style.visibility = "visible"
 
   //Removes the buttons that don't have any options (min v 1 and max 4 buttons)
   while (optionButtonsElement.firstChild) {
@@ -47,7 +47,7 @@ function showTextNode(textNodeIndex) {
   textNode.options.forEach(option => {
     if (showOption(option)) {
       const button = document.createElement('button');
-      button.innerText = option.text
+      button.innerHTML = option.text
       button.addEventListener("click", () => addLogicPoints(option.logicValue))
       button.addEventListener("click", () => addEmotionPoints(option.emotionValue))
       button.addEventListener("click", () => addScepticPoints(option.scepticValue))
@@ -115,12 +115,12 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete the survey on the link below? <br>It will only take a few minutes, and it will help us with our research.</p>",
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete the survey on the link below? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
     subtext: "<p>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
-      "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank' style='font-size: 16px'>Click here to access the survey</a>",
+      "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank'>Click here to access the survey</a>",
     options: [
       {
-        text: "Let's do this! Start the game.",
+        text: "<p class='first-btn'>Let's do this!<br><span>Start the game</span></h2>",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
@@ -131,8 +131,8 @@ const textNodes = [
   {
     id:2,
     img: 'img/people.jpg',
-    text: "<p>Information is made by people, and all people are flawed, imperfect beings. <br> " +
-      "Therefore, all information is flawed and imperfect.</p>",
+    text: "<h2>Information is made by people, and all people are flawed, imperfect beings. <br><br> " +
+      "Therefore, all information is flawed and imperfect.</h2>",
     options: [
       {
         text: "That sounds...logical.",
@@ -172,7 +172,7 @@ const textNodes = [
   {
     id:3,
     img: 'img/makes_sense.jpg',
-    text: "<p>So, if all information is flawed, that means that all information is equally unreliable.</p>",
+    text: "<h2>So, if all information is flawed, that means that all information is equally unreliable.</h2>",
     options: [
       {
         text: "Non-sequitur, my friend.",
@@ -266,7 +266,7 @@ const textNodes = [
         optionValue: 0,
         nextText: 2,
       },
-      ]
+    ]
   },
   {
     id:7,
@@ -345,7 +345,7 @@ const textNodes = [
     id:11,
     img: 'img/dad_covid.png',
     text: "<h2>I mean, I didn't open the link, but his message pretty much sums it up. " +
-      "<br>There's no way I'm getting this vaccine, it's going to do more harm than good.</h2>",
+      "<br><br>There's no way I'm getting this vaccine, it's going to do more harm than good.</h2>",
     subtext:"<div>You may open the link <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
     options: [
       {
@@ -483,8 +483,8 @@ const textNodes = [
   {
     id:22,
     img: 'img/covid_news.png',
-    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
-      "However, the study in the link seems pretty legit, right?</h2>",
+    text: "<p>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
+      "However, the study in the link seems pretty legit, right?</p>",
     options: [
       {
         text: "That's actually a good question. Who is behind this information?",
@@ -519,9 +519,9 @@ const textNodes = [
   {
     id:24,
     img: 'img/about-us.png',
-    text: "<h2>Well, you can normally see information about a site in their 'About' section.<br>" +
+    text: "<p>Well, you can normally see information about a site in their 'About' section.<br>" +
       "If there isn't one you can always search for their name in a search engine.<br>" +
-      "You could even do both things</h2>",
+      "You could even do both things</p>",
     subtext: "<div>You may open a new tab and google about Scitech Daily, " +
       "or look at their 'About Us' page <a href='https://scitechdaily.com/about-us/' target='_blank'>here</a>",
     options: [
