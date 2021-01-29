@@ -3,14 +3,17 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const imageElement = document.getElementById('image');
 const subTextElement = document.getElementById('subtext');
 const ffButtonElement = document.getElementById('ff-button');
-const scoreElement = document.getElementById('score');
+const logicElement = document.getElementById('logic-scorebox');
+const emotionElement = document.getElementById('emotion-scorebox');
+const scepticElement = document.getElementById('sceptic-scorebox');
 
 let state = {}
-let balance = 0
+let logic = 0
+let emotion = 0
+let sceptic = 0
 
 function startGame() {
   state = {}
-  balance = 0
   logic = 0
   emotion = 0
   sceptic = 0
@@ -25,8 +28,10 @@ function showTextNode(textNodeIndex) {
   textElement.innerHTML = textNode.text;
   //Change image src specified for the scene
   imageElement.src = textNode.img;
-  //Shows the current score
-  scoreElement.innerHTML = "Score: " + balance
+  //Shows the current scores
+  logicElement.innerHTML = "Logic: " + logic
+  emotionElement.innerHTML = "Emotion: " + emotion
+  scepticElement.innerHTML = "Scepticism: " + sceptic
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
     subTextElement.style.display = "none"
@@ -87,7 +92,7 @@ function addEmotionPoints(points){
   emotion += points
 }
 
-//Add Scpetic points
+//Add Sceptic points
 function addScepticPoints(points){
   parseInt(points)
   sceptic += points
@@ -141,6 +146,7 @@ const textNodes = [
         logicValue: 1,
         emotionValue: 0,
         scepticValue: 0,
+        optionValue: 0,
         nextText: 3,
       },
       {
@@ -165,6 +171,9 @@ const textNodes = [
         optionValue: 0,
         //Only shows this option if the required state has been saved
         requiredState: (currentState) => currentState.notnew,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 7,
       }
     ]
@@ -193,8 +202,8 @@ const textNodes = [
       },
       {
         text: "Wait, what? No.",
-        logicValue: 0,
-        emotionValue: 1,
+        logicValue: 1,
+        emotionValue: 0,
         scepticValue: 0,
         nextText: 4,
       },
@@ -207,7 +216,9 @@ const textNodes = [
     options: [
       {
         text: "Go on, I'm listening.",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 5,
       },
       {
@@ -222,6 +233,9 @@ const textNodes = [
         optionValue: 0,
         requiredState: (currentState) => currentState.doubtful,
         setState: { emotional: false },
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 5,
       },
     ]
@@ -236,19 +250,26 @@ const textNodes = [
         text: "Come on, just tell me what to think!",
         optionValue: 0,
         setState: { lazy: true },
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 8,
       },
       {
         text: "Nice try, but I can tell a Deep State goon when I see one. \n You just want to impose your liberal agenda on me.",
         requiredState: (currentState) => currentState.conspiratorial,
         setState: { emotional: true },
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
         nextText: 6,
       },
       {
         text: "So how do I do this?",
         setState: { emotional: true },
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 7,
       },
     ]
@@ -263,7 +284,9 @@ const textNodes = [
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 2,
       },
     ]
@@ -275,12 +298,16 @@ const textNodes = [
     options: [
       {
         text: "Yes, please!",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 9,
       },
       {
         text: "Uh-huh",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 9,
       },
     ]
@@ -292,7 +319,9 @@ const textNodes = [
     options: [
       {
         text: "Yes, all right. Show me.",
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 9,
       },
     ]
