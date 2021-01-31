@@ -8,24 +8,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<!--  <script defer src="js/all.js"></script>-->
   <script defer src="js/game.js"></script>
+  <script defer src="js/all.js"></script>
 </head>
 
 <body>
 
-<div id="header-message" class="header-box">NOW WITH MORE FAKE NEWS</div>
+<div id="header-message" class="header-box">NOW WITH FEWER FAKE NEWS!</div>
 <div class="head">
   <div class="headerobjectswrapper">
-    <div class="info-box"><a href="">ABOUT THIS GAME</a></div>
-    <header>What the Fact</header>
-    <span style="width: 100px"></span>
+    <button id="about-us" class="info-box">About this Game</button>
+    <header>WhaddaFact</header>
+    <span style="width: 150px"></span>
   </div>
 </div>
+
+<!-- Modal -->
+<div id="about-us-modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>About Whaddafact</h2>
+    <p>This game has been developed by <a href="https://www.linkedin.com/in/alexanderholmesv/" target="_blank">Alexander Holmes</a> as part of the <a href="https://www.upf.edu/web/courage" target="_blank">Courage project</a>, by the <a href="https://www.upf.edu/web/tide" target="_blank">TIDE Research Group</a> at Universitat Pompeu Fabra.<br>
+      <br><span>Design by <a href="https://lasoville.com/" target="_blank">Sofía Villela.</a></span><br>
+      <br><img src="img/upf_logo.png" alt="UPF Logo">
+      <img src="img/courage_logo.png" alt="Courage logo">
+      <br><br><span>©2021 Alexander Holmes</span></p>
+  </div>
+
+</div>
+
+<!-- Sub header -->
 <div class="subhead">
-  <div id="logic-scorebox" class="scorebox">SCORE</div>
-  <div id="emotion-scorebox" class="scorebox">SCORE</div>
-  <div id="sceptic-scorebox" class="scorebox">SCORE</div>
+  <span>V. 0.8</span>
+  <span id="spanDate"></span>
+  <span>Price: 0￠</span>
+<!--  <div id="logic-scorebox" class="scorebox">SCORE</div>-->
+<!--  <div id="emotion-scorebox" class="scorebox">SCORE</div>-->
+<!--  <div id="sceptic-scorebox" class="scorebox">SCORE</div>-->
 </div>
 
 <div class="container">

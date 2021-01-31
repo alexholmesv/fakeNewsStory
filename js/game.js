@@ -6,6 +6,8 @@ const ffButtonElement = document.getElementById('ff-button');
 const logicElement = document.getElementById('logic-scorebox');
 const emotionElement = document.getElementById('emotion-scorebox');
 const scepticElement = document.getElementById('sceptic-scorebox');
+const surveyLink = document.getElementById('survey-link');
+const startButton = document.getElementById('start-btn')
 
 let state = {}
 let logic = 0
@@ -20,6 +22,40 @@ function startGame() {
   showTextNode(1)
 }
 
+//Add date to header
+const months = ['January','February','March','April','May','June','July',
+  'August','September','October','November','December'];
+const tomorrow = new Date();
+tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
+document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
+
+// Get the modal
+let modal = document.getElementById("about-us-modal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("about-us");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+  modal.classList.add("mystyle");
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 //Show text and images within the container
 function showTextNode(textNodeIndex) {
   //Get the text node number
@@ -29,9 +65,9 @@ function showTextNode(textNodeIndex) {
   //Change image src specified for the scene
   imageElement.src = textNode.img;
   //Shows the current scores
-  logicElement.innerHTML = "Logic: " + logic
-  emotionElement.innerHTML = "Emotion: " + emotion
-  scepticElement.innerHTML = "Scepticism: " + sceptic
+  // logicElement.innerHTML = "Logic: " + logic
+  // emotionElement.innerHTML = "Emotion: " + emotion
+  // scepticElement.innerHTML = "Scepticism: " + sceptic
   //Show the secondary text, if there is none hides subtext div
   if (textNode.subtext === undefined ) {
     subTextElement.style.display = "none"
@@ -120,12 +156,12 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
     subtext: "<p'>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
       "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank'>Click here to access the survey</a>",
     options: [
       {
-        text: "<p class='first-btn'>Let's do this!<br><span>Start the game</span></h2>",
+        text: "<p id='start-btn' class='first-btn'>I've completed the survey!<br><span>Start the game</span></h2>",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
@@ -848,6 +884,7 @@ const textNodes = [
     ]
   },
 ]
+
 
 
 //Starts game
