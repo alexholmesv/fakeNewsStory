@@ -3,11 +3,16 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const imageElement = document.getElementById('image');
 const subTextElement = document.getElementById('subtext');
 const ffButtonElement = document.getElementById('ff-button');
-const logicElement = document.getElementById('logic-scorebox');
-const emotionElement = document.getElementById('emotion-scorebox');
-const scepticElement = document.getElementById('sceptic-scorebox');
 const surveyLink = document.getElementById('survey-link');
-const startButton = document.getElementById('start-btn')
+const startButton = document.getElementById('start-btn');
+const logicBadgeElement = document.getElementById("logic-badge");
+const scepticBadgeElement = document.getElementById("sceptic-badge");
+const emotionBadgeElement = document.getElementById("emotion-badge");
+
+// ACTIVATE TO SHOW SCORES, MUST CHANGE FUNCTIONS BELOW AND ADD HTML BOXES
+//const logicElement = document.getElementById('logic-scorebox');
+//const emotionElement = document.getElementById('emotion-scorebox');
+//const scepticElement = document.getElementById('sceptic-scorebox');
 
 let state = {}
 let logic = 0
@@ -74,6 +79,25 @@ function showTextNode(textNodeIndex) {
   } else {
     subTextElement.style.display = "block"
     subTextElement.innerHTML = textNode.subtext;
+  }
+
+  //Shows or hides badges
+  if (logic > 1) {
+    logicBadgeElement.src = "img/logic_icon.png"
+  } else {
+    emotionBadgeElement.src = "img/blank.png"
+  }
+
+  if (sceptic > 1) {
+    scepticBadgeElement.src = "img/conspiracy_icon.png"
+  } else {
+    emotionBadgeElement.src = "img/blank.png"
+  }
+
+  if (emotion > 1) {
+    emotionBadgeElement.src = "img/drama_icon.png"
+  } else {
+    emotionBadgeElement.src = "img/blank.png"
   }
 
   //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)

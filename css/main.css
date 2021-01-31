@@ -43,6 +43,11 @@ body:before {
   -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
   filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
   mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.img-box {
+
 }
 
 .scorebox {
@@ -299,6 +304,14 @@ header{
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.badge-container {
+  display: flex;
+}
+
+.badge-img {
+  width: 50px;
 }
 
 @media (max-width: 500px){
