@@ -34,31 +34,46 @@ const tomorrow = new Date();
 tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
 document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
 
-// Get the modal
-let modal = document.getElementById("about-us-modal");
-
+// Get the About Us modal
+function aboutUs() {
+  let modal = document.getElementById("about-us-modal");
+  let lateralReadingModal = document.getElementById("lat-reading-modal")
 // Get the button that opens the modal
-let btn = document.getElementById("about-us");
-
+  let btn = document.getElementById("about-us");
 // Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
-
+  let span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-  modal.classList.add("mystyle");
-}
-
+  btn.onclick = function () {
+    modal.style.display = "block";
+    modal.classList.add("mystyle");
+  }
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+  span.onclick = function () {
     modal.style.display = "none";
   }
+// When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+
+function lateralReading() {
+  lateralReadingModal.style.display = "block";
+  span.onclick = function() {
+    lateralReadingModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target === lateralReadingModal) {
+      lateralReadingModal.style.display = "none";
+    }
+  }
+  showTextNode(17)
+}
+
+function googlePee() {
+  window.open("https://www.google.com/search?rlz=1C5CHFA_enES922ES923&biw=1440&bih=702&sxsrf=ALeKk00U0GXtT-_kmVFrjLh3WjeiY40vBA%3A1614158978781&ei=ghw2YJmJL9LWgQbmxqDQAw&q=men+peeing+standing+up+is+bad+for+you&oq=men+peeing+standing+up+is+bad+for+you&gs_lcp=Cgdnd3Mtd2l6EAM6BAgjECc6BQgAEJECOgIIADoICC4QxwEQowI6BAguEEM6BAgAEEM6AgguOgUIABDLAToHCAAQhwIQFDoFCAAQhgNQgegLWNuODGDFkAxoAHACeACAAc4CiAGnOJIBCDAuMjkuOC4xmAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=gws-wiz&ved=0ahUKEwiZ0qnkmoLvAhVSa8AKHWYjCDoQ4dUDCA0&uact=5");
 }
 
 //Show text and images within the container
@@ -85,13 +100,13 @@ function showTextNode(textNodeIndex) {
   if (logic > 1) {
     logicBadgeElement.src = "img/logic_icon.png"
   } else {
-    emotionBadgeElement.src = "img/blank.png"
+    logicBadgeElement.src = "img/blank.png"
   }
 
   if (sceptic > 1) {
     scepticBadgeElement.src = "img/conspiracy_icon.png"
   } else {
-    emotionBadgeElement.src = "img/blank.png"
+    scepticBadgeElement.src = "img/blank.png"
   }
 
   if (emotion > 1) {
@@ -171,6 +186,8 @@ function selectOption(option) {
 }
 
 
+
+
 //MAIN STORY SCRIPT.
 // Text for main text, options for buttons, img for src.
 // Subtext, link1 and link2 are optional.
@@ -210,7 +227,7 @@ const textNodes = [
         nextText: 3,
       },
       {
-        text: "Sure, I hate people too.",
+        text: "<div id='about-us'>Sure, I hate people too.</div>",
         setState: { emotional: true },
         logicValue: 0,
         emotionValue: 0,
@@ -354,7 +371,7 @@ const textNodes = [
   {
     id:7,
     img: 'img/fact-checking.jpg',
-    text: "<p>We're going to discuss a few strategies to help you master your fact-checking and logical skills when looking at information online.</p>",
+    text: "<p>We're going to discuss a few strategies to help you master your fact-checking skills when looking at information online.</p>",
     options: [
       {
         text: "Yes, please!",
@@ -375,7 +392,7 @@ const textNodes = [
   {
     id:8,
     img: 'img/fact-checking.jpg',
-    text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few strategies to help you master your fact-checking and logical skills when looking at information online.</p>",
+    text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few strategies to help you master your fact-checking skills when looking at information online.</p>",
     options: [
       {
         text: "Yes, all right. Show me.",
@@ -388,526 +405,401 @@ const textNodes = [
   },
   {
     id:9,
-    img: 'img/truth_lies.jpg',
-    text: "<h2>What would you like to know?</h2>",
-    setState: { notnew: true },
-    subtext: "<p>Next time you play, you may skip the introduction and start from this page.</p>",
+    img: 'img/gender.jpg',
+    text: "<p>Before we begin, who do you want to be today?</p>",
     options: [
       {
-        text: "I want to know who is telling the truth",
-        optionValue: 0,
+        text: "I want to be male",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 10,
       },
       {
-        text: "I want to know who is lying",
-        optionValue: 0,
-        nextText: 35,
+        text: "I want to be female",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 10,
+      },
+      {
+        text: "I want to be a mystery",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 10,
       },
     ]
   },
+
+//  PEEING ROUTE - STARTS AT 10
+
   {
     id:10,
-    img: 'img/dad_covid.png',
-    text: "<h2>I just got this message from my dad. <br> Did you know there is a study that says that the new COVID-19 vaccine doesn't work?</h2>",
-    subtext:"<div>You may open the link above <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    img: 'img/pee.png',
+    text: "<p>Ok, you might want to sit down for this revelation...</p><br><h2><strong>Did you know that science says that peeing standing up is bad for your health?</strong></h2></h2><br><p>Men should sit down to pee.</p>",
     options: [
       {
-        text: "Well, it doesn't surprise me. I mean, the vaccine is very new after all",
-        optionValue: 0,
+        text: "That's ridiculous",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
         nextText: 11,
       },
       {
-        text: "What do you mean it doesn't work? Are you sure this information is correct?",
-        setState: { doubtful: true },
-        optionValue: 0,
+        text: "Science says that?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
         nextText: 11,
       },
       {
-        text: "Of course it doesn't, COVID is a hoax.",
-        setState: { conspiratorial: true },
-        optionValue: 0,
+        text: "Who told you this?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 11,
       },
     ]
   },
   {
     id:11,
-    img: 'img/dad_covid.png',
-    text: "<h2>I mean, I didn't open the link, but his message pretty much sums it up. " +
-      "<br><br>There's no way I'm getting this vaccine, it's going to do more harm than good.</h2>",
-    subtext:"<div>You may open the link <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    img: 'img/jpg',
+    text: "<p>If you don't believe me, just google it. It's all there, I've done my research.</p>",
+    subtext: "<a href='https://www.google.com/search?rlz=1C5CHFA_enES922ES923&biw=1440&bih=702&sxsrf=ALeKk00U0GXtT-_kmVFrjLh3WjeiY40vBA%3A1614158978781&ei=ghw2YJmJL9LWgQbmxqDQAw&q=men+peeing+standing+up+is+bad+for+you&oq=men+peeing+standing+up+is+bad+for+you&gs_lcp=Cgdnd3Mtd2l6EAM6BAgjECc6BQgAEJECOgIIADoICC4QxwEQowI6BAguEEM6BAgAEEM6AgguOgUIABDLAToHCAAQhwIQFDoFCAAQhgNQgegLWNuODGDFkAxoAHACeACAAc4CiAGnOJIBCDAuMjkuOC4xmAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=gws-wiz&ved=0ahUKEwiZ0qnkmoLvAhVSa8AKHWYjCDoQ4dUDCA0&uact=5' target='_blank'>(Click here to google this. The page will open in a new tab).</a>",
     options: [
       {
-        text: "So you think this message is true just because your dad forwarded it?",
-        optionValue: 0,
+        text: "Ok, let's see what we have here...",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
         nextText: 12,
       },
       {
-        text: "Well, if you read the actual study you would see that it doesn't actually say that",
-        setState: { logical: true },
-        optionValue: 0,
-        nextText: 22,
-      },
-      {
-        text: "It's common sense man. This vaccine has been rushed into the market, it's all a sham to make money",
-        optionValue: 0,
+        text: "You wouldn't know research if it hit you in the face.",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
         nextText: 12,
       },
     ]
   },
   {
     id:12,
-    img: 'img/dad_covid.png',
-    text: "<h2>Actually, my dad also says that common sense is the least common of all senses. " +
-      "<br><br> Perhaps I should open that link after all and read what it says...</h2>",
-    subtext:"<div>You may open the link <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
+    img: 'img/jpg',
+    text: "<p>See? Peeing standing up is bad for your health.</p>",
     options: [
+      //BIG BRANCH - GULLIBLE SET STRAIGHT
       {
-        text: "Please do",
-        optionValue: 0,
+        text: "Wow! I'm never peeing standing up again!",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: -1,
         nextText: 13,
       },
+      //BRANCH 2 - CONFIRM SUSPICION
       {
-        text: "Wait! It could be a virus! I think we've established your dad cannot be trusted",
-        optionValue: 0,
-        nextText: 13,
+        text: "That's not accurate though, is it?",
+        setState: { suspicious: true },
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 15,
       },
       {
-        text: "Open it, it doesn't really matter anyway.",
-        requiredState: (currentState) => currentState.conspiratorial,
-        optionValue: 0,
-        nextText: 13,
+        text: "You're an idiot.",
+        setState: { suspicious: true },
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 15,
       },
     ]
   },
   {
     id:13,
-    img: 'img/covid_news.png',
-    text: "<h2>Ah. So what the article actually says is that the COVID vaccines could <i>eventually</i> become ineffective once the virus gets used to them.</h2>",
+    img: 'img/jpg',
+    text: "<p>We need to tell more people about this. We have to share this information to save lives!</p>",
     options: [
       {
-        text: "But that doesn't mean that they are ineffective, especially now.",
-        requiredState: (currentState) => currentState.logical,
-        optionValue: 0,
-        nextText: 22,
+        text: "I'm on it! What link in particular is it we need to share?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: -1,
+        nextText: 14,
       },
       {
-        text: "So, your dad's been lying?",
-        optionValue: 0,
-        nextText: 14,
+        //GOES BACK TO CONFIRM SUSPICION BRANCH
+        text: "But we're sure about this aren't we?",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 15,
       },
     ]
   },
   {
     id:14,
-    img: 'img/covid_news.png',
-    text: "<h2>Hey! My dad's not lying. One of his friends sent him this on Whatsapp and he shared it because he cares deeply about Covid.</h2>",
+    img: 'img/jpg',
+    text: "<p>Well I don't know, you saw all those google results. Pick one.</p>",
     options: [
       {
-        text: "I'm sure he means well, but you have to admit that the message is super misleading.",
-        optionValue: 0,
-        nextText: 22,
+        text: "Which one says it's bad for you, again?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 15,
       },
       {
-        text: "Who cares if the message is inaccurate? Vaccines are evil, that's the truth.",
-        optionValue: 0,
-        requiredState: (currentState) => currentState.conspiratorial,
+        text: "I need something with a bit more substance. We're saving lives here.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 15,
       },
     ]
   },
   {
     id:15,
-    img: 'img/side_eye.png',
-    text: "<h2>So, in order to find the truth we need to say things that aren't true? That makes no sense.</h2>",
-    optionValue: 0,
+    img: 'img/jpg',
+    text: "<p>What do you mean? It's right there, it says it's good for men's health to sit down to pee.</p>",
     options: [
       {
-        text: "All I'm saying is that I think vaccines are evil, " +
-          "so I will support anything that vaguely reaffirms by own beliefs and prejudices, even when it's a blatant lie.",
-        optionValue: -2,
+        text: "But that doesn't mean peeing standing up is BAD for you",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 16,
       },
       {
-        text: "Well, if you put it that way...no, I guess not.",
-        optionValue: 0,
-        nextText: 22,
+        text: "You said science. Where is the science? These are all opinion pieces.",
+        requiredState: (currentState) => currentState.suspicious,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 16,
       },
     ]
   },
   {
     id:16,
-    img: 'img/side_eye.png',
-    text: "<h2>So, you will choose to believe a lie just because it's convenient to reaffirm your prejudices?</h2>",
+    img: 'img/jpg',
+    text: "<p>What do you mean? There are STUDIES. SCIENTIFIC STUDIES. Science says peeing sitting down is better for you. So that's what we should do.</p>",
     options: [
       {
-        text: "I just don't want to be wrong! I want to win!",
-        optionValue: -1,
+        text: "Right, I think I see what you're getting at.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 17,
       },
       {
-        text: "I was just joking. Of course, being deceitful on purpose doesn't really help anybody.",
-        optionValue: 1,
-        nextText: 22,
+        text: "<div onclick='googlePee()'>[Look at the Google search results again].</div>",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 16,
+      },
+      {
+        text: "But most of these are just opinions, not actual facts.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 17,
       },
     ]
   },
   {
     id:17,
-    img: 'img/side_eye.png',
-    text: "<h2>Well, by actively choosing to believe lies, no one really wins, now do they?</h2>",
+    img: 'img/jpg',
+    text: "<p>Come on, do your research.</p>",
     options: [
       {
-        text: "I guess not",
-        optionValue: 1,
-        nextText: 36,
+        text: "How many links did you click when you googled?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 18,
       },
       {
-        text: "OK whatever, let's change the subject",
-        optionValue: 0,
-        nextText: 36,
+        text: "I have. It says you're wrong. Look at the search results.",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 16,
+      },
+    ]
+  },
+  {
+    id:18,
+    img: 'img/jpg',
+    text: "<p>Well...I didn't click any of the links, because Google gives you a neat summary right at the top. It's very handy.</p>",
+    options: [
+      {
+        text: "Yeah, it's super handy. I do the same.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 23,
+      },
+      {
+        text: "Humour me, click on the first link.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 19,
+      },
+      {
+        text: "Why don't you scroll down a bit to see what else there is?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 23,
+      },
+    ]
+  },
+  {
+    id:19,
+    img: 'img/fatherly_text.png',
+    text: "<p>Ok, I'll click on the link. Let's see...</p>",
+    options: [
+      {
+        text: "So why do you think peeing standing up is bad for you?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 18,
+      },
+      {
+        text: "Where are the studies, bub?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 18,
+      },
+    ]
+  },
+  {
+    id:20,
+    img: 'img/fatherly_text.png',
+    text: "<p>Ok, it takes me here. Let's see...</p>",
+    options: [
+      {
+        text: "So, why do you believe peeing standing up is bad for your health?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 21,
+      },
+      {
+        text: "Where are the studies, bub?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 18,
+      },
+    ]
+  },
+  {
+    id:21,
+    img: 'img/fatherly_headline.png',
+    text: "<p>But...but...read the title.</p>",
+    options: [
+      {
+        text: "Yes, it <em>might</em> be healthier for <em>some</em> men. Not all men.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 22,
+      },
+      {
+        text: "But you promised science. I don't see science. This doesn't point to any papers.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 22,
       },
     ]
   },
   {
     id:22,
-    img: 'img/covid_news.png',
-    text: "<p>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
-      "However, the study in the link seems pretty legit, right?</p>",
+    img: 'img/fatherly_headline.png',
+    text: "<p>I...guess that's true. Anyway, I'm sure we can find a paper about this. Let's go back to Google.</p>",
     options: [
       {
-        text: "That's actually a good question. Who is behind this information?",
-        optionValue: 0,
+        text: "<div onclick='googlePee()'>[Look at the Google search results again].</div>",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 23,
-      },
-      {
-        text: "No one should trust your dad. Ever.",
-        optionValue: 0,
-        setState: { hater: true },
-        nextText: 37,
       },
     ]
   },
   {
-    id:23,  //START BRANCH - STUDY OR NEWS SITE
-    img: 'img/covid_news.png',
-    text: "<h2>Do you mean the news site or the actual study?</h2>",
+    id:23,
+    img: 'img/google_scrolldown.png',
+    text: "<p>Ok, scrolling down the results. There are two articles from Men's Health, and another one from a site called Thrillist. And they all say that men should pee sitting down! Should I click on them?</p>",
     options: [
       {
-        text: "I want to know about the news site",
-        optionValue: 0,
+        text: "Hold on, keep scrolling.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 24,
       },
       {
-        text: "I want to know about the study",
-        optionValue: 0,
-        nextText: 27,
+        text: "Yes, all amazing sources, I know. But let's try to find an actual paper.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 24,
       },
     ]
   },
   {
     id:24,
-    img: 'img/about-us.png',
-    text: "<p>Well, you can normally see information about a site in their 'About' section.<br>" +
-      "If there isn't one you can always search for their name in a search engine.<br>" +
-      "You could even do both things</p>",
-    subtext: "<div>You may open a new tab and google about Scitech Daily, " +
-      "or look at their 'About Us' page <a href='https://scitechdaily.com/about-us/' target='_blank'>here</a>",
+    img: 'img/google_papers.png',
+    text: "<p>Ok, here's one that looks like a paper!</p>",
     options: [
       {
-        text: "I checked their About page and they seem legit. Let's find out more about the study.",
-        optionValue: 0,
-        nextText: 27,
-      },
-      {
-        text: "But what if they're lying?",
-        optionValue: 0,
+        text: "Yes, that's just what we need! Click on that one.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 25,
       },
-    ]
-  },
-  {
-    id:24,
-    img: 'img/covid_news.png',
-    text: "<h2>I suppose we could always check what <i>other people</i> say about them.</h2>",
-    options: [
       {
-        text: "That makes sense. We've got to know who they are",
-        optionValue: 0,
-        nextText: 26,
-      },
-      {
-        text: "And if no one else has anything to say about them?",
-        optionValue: 0,
+        text: "Finally! I'm going to show you why you're wrong, with SCIENCE.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 25,
       },
     ]
   },
   {
     id:25,
-    img: 'img/covid_news.png',
-    text: "<h2>Well, if no one's heard of them before, and no one has anything to say about them...</h2>",
+    img: 'img/pee_paper.png',
+    text: "<p>Ok, here's the paper. It talks about </p>",
     options: [
       {
-        text: "...then they're probably not a very authoritative source. Yeah, let's move on to the study.",
-        optionValue: 1,
-        nextText: 27,
+        text: "Yes, that's just what we need! Click on that one.",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 25,
       },
       {
-        text: "...they're probably aliens.",
-        optionValue: 0,
-        nextText: 26,
-      },
-    ]
-  },
-  {
-    id:26,
-    img: 'img/covid_news.png',
-    text: "<h2>What? No man, it means that they're probably not very trustworthy.</h2>",
-    options: [
-      {
-        text: "I know, I was just being funny.",
-        optionValue: 0,
-        nextText: 27,
-      },
-      {
-        text: "If you say so [it's definitely aliens].",
-        setState: { aliens : true },
-        optionValue: -1,
-        nextText: 27,
-      },
-    ]
-  },
-  {
-    id:27, //START BRANCH
-    img: 'img/pennstate.png',
-    text: "<h2>According to this news article, the study was published by Penn State University.</h2>",
-    options: [
-      {
-        text: "Should we look for the original paper?",
-        optionValue: 0,
-        nextText: 28,
-      },
-      {
-        text: "What do other people say about this study?",
-        optionValue: 0,
-        nextText: 29,
-      },
-      {
-        text: "I bet it's all a lie. Aliens are tricky like that.",
-        optionValue: 0,
-        requiredState: (currentState) => currentState.aliens,
-        nextText: 30,
-      },
-    ]
-  },
-  {
-    id:28, //FROM 27
-    img: 'img/goodidea.gif',
-    text: "<h2>That's actually a great strategy. Luckily, the author of this article was kind enough to provide a link to the paper." +
-      "<br>It's right there at the bottom of the page.</h2>",
-    subtext: "<div>You may open the link <a href='https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001000' target='_blank'>here</a></div>",
-    options: [
-      {
-        text: "I can only see the abstract, but it says pretty much the same as the article.",
-        optionValue: 0,
-        nextText: 38,
-      },
-      {
-        text: "This paper is boring. Do I really need to read it?",
-        optionValue: 0,
-        nextText: 31,
-      },
-    ]
-  },
-  {
-    id:29, //FROM 27
-    img: 'img/covid_news.png',
-    text: "<h2>Checking for other sources could help us know more about this story. " +
-      "<br>Let's google something along the lines of 'penn state university + covid + resistance' </h2>",
-    subtext: "<div><a href='https://cutt.ly/qhPLptJ' target='_blank'>Click to Google 'penn state university + covid + resistance'</a></div>",
-    options: [
-      {
-        text: "OK, let's Google this",
-        optionValue: 0,
-        nextText: 33,
-      },
-    ]
-  },
-  {
-    id:30, //FROM 27
-    img: 'img/covid_news.png',
-    text: "<h2>ENOUGH WITH THE ALIENS! Seriously. Can we move on?</h2>",
-    options: [
-      {
-        text: "All right, calm down! [Are you sure you're not an alien?]",
-        optionValue: 0,
-        nextText: 32,
-      },
-    ]
-  },
-  {
-    id:31, //FROM 27
-    img: 'img/covid_news.png',
-    text: "<h2>Well no. That's the whole point of scientific journalism: to let us know about what a paper says without actually having to read the paper." +
-      "<br>But can we trust the source?</h2>",
-    options: [
-      {
-        text: "Well, we would have to make sure the news site is legit. And this one seems to be OK.",
-        optionValue: 0,
-        nextText: 34,
-      },
-      {
-        text: "I would stay wary of every source anyway. Reading the paper abstract will always give me a better idea of what's going on.",
-        optionValue: 1,
-        nextText: 34,
-      },
-    ]
-  },
-  {
-    id:32, //FROM 30 - ALIENS
-    img: 'img/covid_news.png',
-    text: "<h2>According to this news article, the study was published by Penn State University.</h2>",
-    options: [
-      {
-        text: "Should we look for the original paper?",
-        optionValue: 0,
-        nextText: 28,
-      },
-      {
-        text: "What do other people say about this study?",
-        optionValue: 0,
-        nextText: 29,
-      },
-    ]
-  },
-  {
-    id:33, //FROM 29
-    img: 'img/google_study.png',
-    text: "<h2>OK, there are lots of hits for this study in the first Google page, and they all seem to say the same thing.</h2>",
-    options: [
-      {
-        text: "So, most other sites say this study is about what the story actually claims. It checks out.",
-        optionValue: 1,
-        nextText: 38,
-      },
-      {
-        text: "So what? Everyone else could be lying too.",
-        optionValue: 0,
-        nextText: 34,
-      },
-    ]
-  },
-  {
-    id:34, //FROM 29
-    img: 'img/covid_news.png',
-    text: "<h2>So, does everything check out?</h2>",
-    options: [
-      {
-        text: "I still need to check a few things",
-        optionValue: 0,
-        nextText: 23,
-      },
-      {
-        text: "Yes, I've had enough. Let's talk about something else.",
-        optionValue: 0,
-        nextText: 35,
-      },
-    ]
-  },
-  {
-    id:35, //FROM 29
-    img: 'img/whatdoyoumean.gif',
-    text: "<h2>To know if someone is lying, or at least not being truthful, " +
-      "we should first try to understand WHAT they are saying. [END FOR NOW]</h2>",
-    options: [
-      {
-        text: "END SECTION - RESTART LOOP",
-        optionValue: 0,
-        nextText: 9,
-      },
-    ]
-  },
-  {
-    id:36, //FROM 17 - RESOLVE NO ONE SHOULD TRUST YOUR DAD LOOP
-    img: 'img/covid_news.png',
-    text: "<h2>OK, so the message my dad sent on Whatsapp was a bit dubious. <br>Let's forget about that bit. <br> " +
-      "However, the study in the link seems pretty legit, right?</h2>",
-    options: [
-      {
-        text: "I guess so. We would have to check if this is not a study paid for by the Illuminati first.",
-        optionValue: -1,
-        nextText: 23,
-      },
-      {
-        text: "Well, it would help to know who's behind this information.",
-        optionValue: 1,
-        nextText: 23,
-      },
-    ]
-  },
-  {
-    id:37, //FROM 22 - REDIRECTED FROM NO ONE SHOULD TRUST YOUR DAD
-    img: 'img/covid_news.png',
-    text: "<h2>OK, my dad wasn't so much lying as his message was a bit off.</h2>",
-    options: [
-      {
-        text: "His message had nothing to do with the study. Shame on him.",
-        optionValue: 0,
-        nextText: 36,
-      },
-      {
-        text: "His message had nothing to do with the study.",
-        optionValue: 0,
-        nextText: 36,
-      },
-      {
-        text: "His message had nothing to do with the study. I admire that. ",
-        optionValue: -1,
-        nextText: 36,
-      },
-    ]
-  },
-  {
-    id:38, //FROM 30 - RESOLVING PAPER LOOP
-    img: 'img/covid_news.png',
-    text: "<h2>OK, so we know about the original paper already and it checks out. What should we do next?</h2>",
-    options: [
-      {
-        text: "Probably find out what other people are saying about this study?",
-        optionValue: 0,
-        nextText: 29,
-      },
-      {
-        text: "Make sure that it's not all a plot by the liberal media?",
-        optionValue: 0,
-        nextText: 39,
-      },
-      {
-        text: "We seem to be going round in circles, let's move on.",
-        optionValue: 0,
-        nextText: 39,
-      },
-    ]
-  },
-  {
-    id:39, //FROM 30 - RESOLVING PAPER LOOP
-    img: 'img/covid_news.png',
-    text: "<h2>Very funny. Still, you make a good point. What if people have found out this study is junk?</h2>",
-    options: [
-      {
-        text: "Yes, it could be junk science.",
-        optionValue: 0,
-        nextText: 29,
-      },
-      {
-        text: "Let's see what other people have to say about this study.",
-        optionValue: 0,
-        nextText: 29,
+        text: "Finally! I'm going to show you why you're wrong, with SCIENCE.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 24,
       },
     ]
   },
 ]
+
 
 
 

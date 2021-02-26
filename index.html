@@ -17,7 +17,7 @@
 <div id="header-message" class="header-box">NOW WITH FEWER FAKE NEWS!</div>
 <div class="head">
   <div class="headerobjectswrapper">
-    <button id="about-us" class="info-box">About this Game</button>
+    <button id="about-us" class="info-box" onclick="aboutUs()">About this Game</button>
     <header>WhaddaFact</header>
     <span style="width: 150px"></span>
   </div>
@@ -31,7 +31,7 @@
     <span class="close">&times;</span>
     <h2>About Whaddafact</h2>
     <p>This game has been developed by <a href="https://www.linkedin.com/in/alexanderholmesv/" target="_blank">Alexander Holmes</a> as part of the <a href="https://www.upf.edu/web/courage" target="_blank">Courage project</a>, by the <a href="https://www.upf.edu/web/tide" target="_blank">TIDE Research Group</a> at Universitat Pompeu Fabra.<br>
-      <br><span>Design by <a href="https://lasoville.com/" target="_blank">Sofía Villela.</a></span><br>
+      <br><span>Design by <a href="https://lasoville.com/" target="_blank">Sofía Villela</a> and Alexander Holmes.</span><br>
       <br><img src="img/upf_logo.png" alt="UPF Logo">
       <img src="img/courage_logo.png" alt="Courage logo">
       <br><br><span>©2021 Alexander Holmes</span></p>
@@ -41,7 +41,7 @@
 
 <!-- Sub header -->
 <div class="subhead">
-  <span>V. 0.8</span>
+  <span>V. 0.8a</span>
   <span id="spanDate"></span>
   <span>Price: 0￠</span>
 <!--  <div id="logic-scorebox" class="scorebox">SCORE</div>-->
@@ -50,12 +50,7 @@
 </div>
 
 <div class="container">
-  <div class="badge-container">
-    <img id="logic-badge" class="badge-img" src="img/blank.png" ">
-    <img id="sceptic-badge" class="badge-img" src="img/blank.png" ">
-    <img id="emotion-badge" class="badge-img" src="img/blank.png" ">
-  </div>
-  <div>
+  <div class="image-container">
     <div class="img-box fill fade-in">
       <img id="image" class="box-img fade-in" src="">
     </div>
@@ -64,6 +59,11 @@
     <div class="textcontainer">
       <div id="text" class="box-text fade-in">Text</div>
       <div id="subtext" class="box-subtext">Additional text</div>
+    </div>
+    <div class="badge-container">
+      <img id="logic-badge" class="badge-img" src="img/blank.png" ">
+      <img id="sceptic-badge" class="badge-img" src="img/blank.png" ">
+      <img id="emotion-badge" class="badge-img" src="img/blank.png" ">
     </div>
     <div id="option-buttons" class="btn-grid">
       <button class="">Option 1</button>
@@ -80,6 +80,18 @@
 
 <img class="border" src="img/border.png" alt="">
 
+<!-- Modals -->
+
+<!--Lateral Reading Medal-->
+<div id="lat-reading-modal" class="modal">
+  <div class="modal-content aligner">
+    <span class="close">&times;</span>
+    <img src="img/lateral-reading.png" alt="">
+    <h2>LATERAL READING</h2>
+    <p>You've opened new tabs in your browser and searched for multiple sources to check what others say about this content. You have developed Lateral Reading! </p>
+  </div>
+
+</div>
 
 </body>
 </html>

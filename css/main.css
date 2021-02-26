@@ -17,13 +17,13 @@ body:before {
   height: 100vh;
   opacity: .5;
   z-index: -1;
-  background: url('../img/newspaper_background.jpg');
+  background: url('../img/newspaper_background-comp.jpg');
   background-size: cover;
 }
 
 
 .container {
-  width: 800px;
+  width: 1000px;
   max-width: 80%;
   margin: 5vh auto 0;
   background-color: #fdfdfd;
@@ -33,7 +33,7 @@ body:before {
 
 .border{
   transform: rotate(180deg);
-  width: 800px;
+  width: 1000px;
   max-width: 80%;
   margin: 0 auto;
   display: block;
@@ -43,11 +43,17 @@ body:before {
   -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
   filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
   mix-blend-mode: multiply;
-  z-index: 1;
+
 }
 
 .img-box {
+ max-width: 500px;
+  margin-left: 250px;
+  padding-top: 20px;
+}
 
+.image-container {
+  background-color: #aaaaaa;
 }
 
 .scorebox {
@@ -291,6 +297,13 @@ header{
   align-items: center;
 }
 
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* The Close Button */
 .close {
   color: #aaa;
@@ -308,6 +321,8 @@ header{
 
 .badge-container {
   display: flex;
+  flex-direction: column;
+  padding-right: 20px;
 }
 
 .badge-img {
@@ -316,11 +331,11 @@ header{
 
 @media (max-width: 500px){
   .flexcontainer{
-    display: block;
+    flex-direction: column;
   }
 
   .info-box {
-    display: none;
+    flex-direction: column;
   }
 
   .modal-content {
@@ -330,4 +345,23 @@ header{
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
   }
+
+  .close {
+    font-size: 72px;
+  }
+
+  header {
+    font-size 18px;
+  }
+
+  .badge-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+  }
+
+  .img-box {
+    max-width: 100%;
+  }
+
 }
