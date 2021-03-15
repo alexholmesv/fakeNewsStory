@@ -20,19 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5f3e490-f0b3-4d2a-9083-6a2e75dd2d4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/fatherly_headline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/fatherly_text.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/gender.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/google_papers.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/google_scrolldown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/lateral-reading.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/pee.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/pee_paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/empathy_logo_green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/empathy_logo_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/empathy_logo_yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/game_over.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/logic_logo_green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/logic_logo_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/logic_logo_yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/luts_conclusion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sceptic_logo_green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sceptic_logo_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sceptic_logo_yellow.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,8 @@
       <workItem from="1610207715267" duration="39000" />
       <workItem from="1610207786709" duration="4570000" />
       <workItem from="1610437294563" duration="1806000" />
-      <workItem from="1611846483047" duration="51819000" />
+      <workItem from="1611846483047" duration="67279000" />
+      <workItem from="1615275227678" duration="7675000" />
     </task>
     <servers />
   </component>

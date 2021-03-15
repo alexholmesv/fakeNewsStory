@@ -60,7 +60,7 @@
       <div id="text" class="box-text fade-in">Text</div>
       <div id="subtext" class="box-subtext">Additional text</div>
     </div>
-    <div class="badge-container">
+    <div id="badge-box" class="badge-container">
       <img id="logic-badge" class="badge-img" src="img/blank.png" ">
       <img id="sceptic-badge" class="badge-img" src="img/blank.png" ">
       <img id="emotion-badge" class="badge-img" src="img/blank.png" ">
@@ -73,24 +73,59 @@
     </div>
   </div>
   <div id="ff-button" class="ff-btn-grid">
-    <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9)"></i></button>
+   Skip intro <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9)"></i></button>
   </div>
-
+  <button onclick="bullyGameOver()">Game over</button>
 </div>
 
 <img class="border" src="img/border.png" alt="">
 
 <!-- Modals -->
 
-<!--Lateral Reading Medal-->
+<!--Lateral Reading Trophy Modal-->
 <div id="lat-reading-modal" class="modal">
   <div class="modal-content aligner">
     <span class="close">&times;</span>
     <img src="img/lateral-reading.png" alt="">
     <h2>LATERAL READING</h2>
     <p>You've opened new tabs in your browser and searched for multiple sources to check what others say about this content. You have developed Lateral Reading! </p>
+    <p><em>(Try playing again as a different character to see if you can get all three badges).</em></p>
+    <br>
   </div>
+</div>
 
+<!-- Bully Game Over Modal-->
+<div id="game-over-bully" class="modal">
+  <div class="modal-content aligner">
+    <img src="img/game_over.jpg" alt="">
+    <h2>You're mean.</h2>
+    <p>I've no interest in talking to bullies. Go away, sheep.</p>
+    <button class="btn try-again" onclick="replay()">Try again.</button>
+    <button class="btn quit" onclick="quit()">I've had enough, get me out of here.</button>
+  </div>
+</div>
+
+<!-- Conspiranoia Game Over Modal-->
+<div id="game-over-conspiracy" class="modal">
+  <div class="modal-content aligner">
+    <img src="img/game_over.jpg" alt="">
+    <h2>Not everything is a conspiracy.</h2>
+    <p>Your tin foil hat is blocking your common sense.</p>
+    <button class="btn try-again" onclick="replay()">Try again.</button>
+    <button class="btn quit" onclick="quit()">I've had enough, get me out of here.</button>
+  </div>
+</div>
+
+<!-- Show Stats Modal-->
+<div id="stats-modal" class="modal">
+  <div class="modal-content aligner">
+    <img src="img/.jpg" alt="">
+    <h2>Ok, here's what I think of you so far.</h2>
+    <p>You are <span id="logical-span"></span></p>
+    <p>You are <span id="emotional-span"></span></p>
+    <p>You are <span id="sceptical-span"></span></p>
+    <button class="btn" onclick="characterSelect()">Continue</button>
+  </div>
 </div>
 
 </body>

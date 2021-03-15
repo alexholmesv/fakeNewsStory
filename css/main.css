@@ -18,7 +18,7 @@ body:before {
   opacity: .5;
   z-index: -1;
   background: url('../img/newspaper_background-comp.jpg');
-  background-size: cover;
+  background-size: auto ;
 }
 
 
@@ -43,11 +43,12 @@ body:before {
   -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
   filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
   mix-blend-mode: multiply;
+  max-width: 100%;
 
 }
 
 .img-box {
- max-width: 500px;
+  max-width: 40%;
   margin-left: 250px;
   padding-top: 20px;
 }
@@ -131,6 +132,7 @@ body:before {
   width: 100%;
   line-height: 25px;
 }
+
 .first-btn{
 
   font-weight: bold;
@@ -142,6 +144,15 @@ body:before {
   font-weight: normal;
   font-style: italic;
 }
+
+.try-again {
+  background-color: limegreen;
+}
+
+.quit {
+  background-color: red;
+}
+
 .flexcontainer{
   display: flex;
   justify-content: space-around;
@@ -320,8 +331,9 @@ header{
 }
 
 .badge-container {
-  display: flex;
+  display: none;
   flex-direction: column;
+  padding-top: 10px;
   padding-right: 20px;
 }
 

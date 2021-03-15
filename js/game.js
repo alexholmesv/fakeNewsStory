@@ -8,6 +8,10 @@ const startButton = document.getElementById('start-btn');
 const logicBadgeElement = document.getElementById("logic-badge");
 const scepticBadgeElement = document.getElementById("sceptic-badge");
 const emotionBadgeElement = document.getElementById("emotion-badge");
+const gameOverBully = document.getElementById("game-over-bully")
+const gameOverConspiracy = document.getElementById("game-over-conspiracy")
+const statsModal = document.getElementById("stats-modal")
+const badgeContainer = document.getElementById("badge-box");
 
 // ACTIVATE TO SHOW SCORES, MUST CHANGE FUNCTIONS BELOW AND ADD HTML BOXES
 //const logicElement = document.getElementById('logic-scorebox');
@@ -37,7 +41,6 @@ document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " 
 // Get the About Us modal
 function aboutUs() {
   let modal = document.getElementById("about-us-modal");
-  let lateralReadingModal = document.getElementById("lat-reading-modal")
 // Get the button that opens the modal
   let btn = document.getElementById("about-us");
 // Get the <span> element that closes the modal
@@ -60,7 +63,9 @@ function aboutUs() {
 }
 
 function lateralReading() {
+  let lateralReadingModal = document.getElementById("lat-reading-modal")
   lateralReadingModal.style.display = "block";
+  let span = document.getElementsByClassName("close")
   span.onclick = function() {
     lateralReadingModal.style.display = "none";
   }
@@ -72,9 +77,83 @@ function lateralReading() {
   showTextNode(17)
 }
 
+function quit() {
+  window.open("http://www.google.com");
+}
+
+function test() {
+  console.log("test")
+}
+
+function replay(){
+  gameOverBully.style.display = "none"
+  gameOverConspiracy.style.display = "none"
+  badgeContainer.style.display = "none";
+  emotion = 3
+  logic = 3
+  sceptic = 3
+  showTextNode(2)
+}
+
+function showPoints() {
+  badgeContainer.style.display = "flex";
+}
+
+function characterSelect() {
+  statsModal.style.display = "none"
+  showPoints();
+  showTextNode(9)
+}
+
+function bullyGameOver() {
+  console.log("game over")
+  state = { notnew: true }
+  emotion = 3
+  gameOverBully.style.display = "block";
+}
+
+function conspiracyGameOver() {
+  console.log("game over")
+  state = { notnew: true }
+  sceptic = 3
+  gameOverConspiracy.style.display = "block";
+}
+
+function showStats() {
+  let logicalSpan = document.getElementById("logical-span")
+  let emotionalSpan = document.getElementById("emotional-span")
+  let scepticalSpan = document.getElementById("sceptical-span")
+  statsModal.style.display = "block"
+
+  if (logic >= 3) {
+    logicalSpan.innerText = "very logical. That's great, but remember that people don't respond well to coldness."
+  } else if (logic === 2)
+    logicalSpan.innerText = "quite logical."
+  else {
+    logicalSpan.innerText = "not very logical. You should make an effort to think things through!"
+  }
+
+  if (emotion >= 3) {
+    emotionalSpan.innerText = "very polite."
+  } else if (emotion === 2)
+    emotionalSpan.innerText = "quite polite."
+  else {
+    emotionalSpan.innerText = "not very polite. Watch  out for being a bully."
+  }
+
+  if (sceptic >= 3) {
+    scepticalSpan.innerText = "very sceptical. Watch out for becoming a conspiracy theorist!"
+  } else if (sceptic === 2)
+    scepticalSpan.innerText = "quite sceptical. It's good to stay critical of the world around you."
+  else {
+    scepticalSpan.innerText = "a bit gullible. Make sure you don't fall for lies too easily."
+  }
+}
+
 function googlePee() {
   window.open("https://www.google.com/search?rlz=1C5CHFA_enES922ES923&biw=1440&bih=702&sxsrf=ALeKk00U0GXtT-_kmVFrjLh3WjeiY40vBA%3A1614158978781&ei=ghw2YJmJL9LWgQbmxqDQAw&q=men+peeing+standing+up+is+bad+for+you&oq=men+peeing+standing+up+is+bad+for+you&gs_lcp=Cgdnd3Mtd2l6EAM6BAgjECc6BQgAEJECOgIIADoICC4QxwEQowI6BAguEEM6BAgAEEM6AgguOgUIABDLAToHCAAQhwIQFDoFCAAQhgNQgegLWNuODGDFkAxoAHACeACAAc4CiAGnOJIBCDAuMjkuOC4xmAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=gws-wiz&ved=0ahUKEwiZ0qnkmoLvAhVSa8AKHWYjCDoQ4dUDCA0&uact=5");
 }
+
 
 //Show text and images within the container
 function showTextNode(textNodeIndex) {
@@ -96,24 +175,39 @@ function showTextNode(textNodeIndex) {
     subTextElement.innerHTML = textNode.subtext;
   }
 
-  //Shows or hides badges
-  if (logic > 1) {
-    logicBadgeElement.src = "img/logic_icon.png"
+  //Changes icon colours for category points (max 3 points) and game over when they reach -1
+  if (logic >= 3) {
+    logicBadgeElement.src = "img/logic_logo_green.png";
+    logic = 3;
+  } else if (logic >0 && logic <=2) {
+      logicBadgeElement.src = "img/logic_logo_yellow.png";
   } else {
-    logicBadgeElement.src = "img/blank.png"
+    logicBadgeElement.src = "img/logic_logo_red.png";
   }
 
-  if (sceptic > 1) {
-    scepticBadgeElement.src = "img/conspiracy_icon.png"
+  if (emotion >= 3) {
+    emotionBadgeElement.src = "img/empathy_logo_green.png";
+    emotion = 3;
+  } else if (emotion >0 && emotion <=2) {
+    emotionBadgeElement.src = "img/empathy_logo_yellow.png"
+  } else if (emotion === 0) {
+    emotionBadgeElement.src = "img/empathy_logo_red.png"
   } else {
-    scepticBadgeElement.src = "img/blank.png"
+    bullyGameOver()
   }
 
-  if (emotion > 1) {
-    emotionBadgeElement.src = "img/drama_icon.png"
+
+  if (sceptic >= 3) {
+    scepticBadgeElement.src = "img/sceptic_logo_green.png";
+    sceptic = 3;
+  } else if (sceptic > 0 && logic <=2) {
+    scepticBadgeElement.src = "img/sceptic_logo_yellow.png"
+  } else if (sceptic === 0) {
+    scepticBadgeElement.src = "img/sceptic_logo_red.png"
   } else {
-    emotionBadgeElement.src = "img/blank.png"
+    conspiracyGameOver()
   }
+
 
   //Shows the Fast Forward button on the main page, for bugfixing (ff scene is hardcoded on the html div)
   (textNode.ff === undefined ) ? ffButtonElement.style.visibility = "hidden": ffButtonElement.style.visibility = "visible"
@@ -147,7 +241,6 @@ function showTextNode(textNodeIndex) {
 //Fast forward to scene function for debugging, scene number hardcoded in HTML
 function fastForward(scene) {
   showTextNode(scene);
-  saveNode()
 }
 
 //Shows options depending on the required state
@@ -197,7 +290,7 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research.</p>",
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research. You will be asked to do this survey one more time at the end of the game.</p>",
     subtext: "<p'>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
       "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank'>Click here to access the survey</a>",
     options: [
@@ -231,7 +324,7 @@ const textNodes = [
         setState: { emotional: true },
         logicValue: 0,
         emotionValue: 0,
-        scepticValue: 1,
+        scepticValue: 0,
         nextText: 3,
       },
       {
@@ -239,19 +332,18 @@ const textNodes = [
         setState: { doubtful: true },
         logicValue: 0,
         emotionValue: 1,
-        scepticValue: 0,
+        scepticValue: 1,
         nextText: 3,
       },
       {
-        text: "(Skip)",
-        flag: "warning",
+        text: "<span style='border: none' class='btn quit' onclick='showPoints()'>(SKIP THE INTRO).</span>",
         optionValue: 0,
         //Only shows this option if the required state has been saved
         requiredState: (currentState) => currentState.notnew,
-        logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
-        nextText: 7,
+        logicValue: 4,
+        emotionValue: 4,
+        scepticValue: 4,
+        nextText: 9,
       }
     ]
   },
@@ -289,19 +381,21 @@ const textNodes = [
   {
     id:4,
     img: 'img/makes_sense.jpg',
-    text: "<p>Just joking. You didn't think I was being serious, did you? <br><br> Of course, all information has some sort of bias, but that doesn't mean all information is created equal.<br> <span class='highlight'>Certain sources are much more reliable than others.</span></p>",
+    text: "<p>Just joking. You didn't think I was being serious, did you? <br>Of course, all information has some sort of bias, but that doesn't mean all information is created equal.<br> <span class='highlight'>Certain sources are much more reliable than others.</span></p>",
     options: [
       {
         text: "Go on, I'm listening.",
         logicValue: 0,
-        emotionValue: 0,
+        emotionValue: 1,
         scepticValue: 0,
         nextText: 5,
       },
       {
         text: "Everything is fake news! \n It's all a plot by the liberal media, the reptilians, and the Illuminati.",
         requiredState: (currentState) => currentState.emotional,
-        optionValue: 0,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         setState: { conspiratorial: true, emotional: true },
         nextText: 5,
       },
@@ -311,8 +405,8 @@ const textNodes = [
         requiredState: (currentState) => currentState.doubtful,
         setState: { emotional: false },
         logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
+        emotionValue: 1,
+        scepticValue: 1,
         nextText: 5,
       },
     ]
@@ -327,9 +421,9 @@ const textNodes = [
         text: "Come on, just tell me what to think!",
         optionValue: 0,
         setState: { lazy: true },
-        logicValue: 0,
+        logicValue: -1,
         emotionValue: 0,
-        scepticValue: 0,
+        scepticValue: -1,
         nextText: 8,
       },
       {
@@ -337,15 +431,15 @@ const textNodes = [
         requiredState: (currentState) => currentState.conspiratorial,
         setState: { emotional: true },
         logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 1,
+        emotionValue: -1,
+        scepticValue: 0,
         nextText: 6,
       },
       {
         text: "So how do I do this?",
         setState: { emotional: true },
         logicValue: 0,
-        emotionValue: 0,
+        emotionValue: 1,
         scepticValue: 0,
         nextText: 7,
       },
@@ -361,7 +455,7 @@ const textNodes = [
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
-        logicValue: 0,
+        logicValue: -1,
         emotionValue: 0,
         scepticValue: 0,
         nextText: 2,
@@ -374,14 +468,14 @@ const textNodes = [
     text: "<p>We're going to discuss a few strategies to help you master your fact-checking skills when looking at information online.</p>",
     options: [
       {
-        text: "Yes, please!",
+        text: "<div onclick='showStats()'>Yes, please!</div> ",
         logicValue: 0,
-        emotionValue: 0,
+        emotionValue: 1,
         scepticValue: 0,
         nextText: 9,
       },
       {
-        text: "Uh-huh",
+        text: "<div onclick='showStats()'>Whatever.</div> ",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
@@ -395,10 +489,10 @@ const textNodes = [
     text: "<p>Well, I can't tell you what to think! <br> But I CAN show you a few strategies to help you master your fact-checking skills when looking at information online.</p>",
     options: [
       {
-        text: "Yes, all right. Show me.",
-        logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
+        text: "<div onclick='showStats()'>Yes, all right. Show me.</div> ",
+        logicValue: 1,
+        emotionValue: 1,
+        scepticValue: 1,
         nextText: 9,
       },
     ]
@@ -437,12 +531,12 @@ const textNodes = [
   {
     id:10,
     img: 'img/pee.png',
-    text: "<p>Ok, you might want to sit down for this revelation...</p><br><h2><strong>Did you know that science says that peeing standing up is bad for your health?</strong></h2></h2><br><p>Men should sit down to pee.</p>",
+    text: "<p>Ok, you might want to sit down for this revelation...</p><h2><strong>Did you know that science says that peeing standing up is bad for your health?</strong></h2><p>Men should sit down to pee.</p>",
     options: [
       {
         text: "That's ridiculous",
         logicValue: 0,
-        emotionValue: 1,
+        emotionValue: -1,
         scepticValue: 0,
         nextText: 11,
       },
@@ -478,7 +572,7 @@ const textNodes = [
       {
         text: "You wouldn't know research if it hit you in the face.",
         logicValue: 0,
-        emotionValue: 1,
+        emotionValue: -1,
         scepticValue: 0,
         nextText: 12,
       },
@@ -510,7 +604,7 @@ const textNodes = [
         text: "You're an idiot.",
         setState: { suspicious: true },
         logicValue: 0,
-        emotionValue: 1,
+        emotionValue: -1,
         scepticValue: 0,
         nextText: 15,
       },
@@ -566,9 +660,9 @@ const textNodes = [
     options: [
       {
         text: "But that doesn't mean peeing standing up is BAD for you",
-        logicValue: 1,
+        logicValue: 0,
         emotionValue: 0,
-        scepticValue: 0,
+        scepticValue: 1,
         nextText: 16,
       },
       {
@@ -577,6 +671,14 @@ const textNodes = [
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 1,
+        nextText: 16,
+      },
+      {
+        text: "The fact that it's more hygienic doesn't mean it's bad for your health",
+        requiredState: (currentState) => currentState.suspicious,
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 16,
       },
     ]
@@ -594,14 +696,14 @@ const textNodes = [
         nextText: 17,
       },
       {
-        text: "<div onclick='googlePee()'>[Look at the Google search results again].</div>",
+        text: "<div onclick='googlePee()'> Give me a second [look at the Google search results once again].</div>",
         logicValue: 1,
         emotionValue: 0,
         scepticValue: 0,
         nextText: 16,
       },
       {
-        text: "But most of these are just opinions, not actual facts.",
+        text: "But most of these are just opinions, not actual facts. You said there are studies.",
         logicValue: 1,
         emotionValue: 0,
         scepticValue: 0,
@@ -612,7 +714,7 @@ const textNodes = [
   {
     id:17,
     img: 'img/jpg',
-    text: "<p>Come on, do your research.</p>",
+    text: "<p>These articles are all based on studies.</p>",
     options: [
       {
         text: "How many links did you click when you googled?",
@@ -622,11 +724,11 @@ const textNodes = [
         nextText: 18,
       },
       {
-        text: "I have. It says you're wrong. Look at the search results.",
+        text: "You're wrong. Look at the search results.",
         logicValue: 0,
         emotionValue: 1,
         scepticValue: 0,
-        nextText: 16,
+        nextText: 23,
       },
     ]
   },
@@ -771,7 +873,7 @@ const textNodes = [
       {
         text: "Finally! I'm going to show you why you're wrong, with SCIENCE.",
         logicValue: 0,
-        emotionValue: 0,
+        emotionValue: -1,
         scepticValue: 0,
         nextText: 25,
       },
@@ -780,23 +882,109 @@ const textNodes = [
   {
     id:25,
     img: 'img/pee_paper.png',
-    text: "<p>Ok, here's the paper. It talks about </p>",
+    text: "<p>Ok, here's the paper. It's a little confusing to be honest, I don't really understand everything. </p>",
     options: [
       {
-        text: "Yes, that's just what we need! Click on that one.",
+        text: "Yeah, I hear you, academics are the worst. It's like they can't write like normal people.",
         logicValue: 1,
-        emotionValue: 0,
+        emotionValue: 1,
         scepticValue: 0,
-        nextText: 25,
+        nextText: 26,
       },
       {
-        text: "Finally! I'm going to show you why you're wrong, with SCIENCE.",
+        text: "Come on, it's not that hard, just read the conclusion.",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+      {
+        text: "That's because science is useless, and scientists are liars.",
+        setState: { conspiratorial: true },
         logicValue: 0,
         emotionValue: 0,
-        scepticValue: 0,
-        nextText: 24,
+        scepticValue: -1,
+        nextText: 26,
       },
     ]
+  },
+  {
+    id:26,
+    img: 'img/pee_paper.png',
+    text: "<p>Yeah, these so-called 'academics' know NOTHING. They're idiots on deep state paychecks.</p>",
+    options: [
+      {
+        text: "Hmm. They should probably learn how to write better. But it doesn't mean they don't know what they're talking about.",
+        logicValue: 1,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 26,
+      },
+      {
+        text: "Come on, it's not that hard, just read the conclusion.",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+      {
+        text: "Yeah, you're right. Science means nothing, truth is relative, the world is a conspiracy.",
+        requiredState: (currentState) => currentState.conspiratorial,
+        logicValue: -1,
+        emotionValue: 1,
+        scepticValue: -2,
+        nextText: 26,
+      },
+    ]
+  },
+  {
+    id: 27,
+    img: 'img/pee_paper.png',
+    text: "<p>OK, let me look at the conclusion. <br> Ah. It seems like this is only a problem for men with prostate problems.</p>",
+    options: [
+      {
+        text: "Right! So, peeing sitting down can help people like this, but...",
+        logicValue: 1,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 28,
+      },
+      {
+        text: "HAHAHAH EAT DIRT! YOU LOSE! I WIN!",
+        logicValue: 0,
+        emotionValue: -3,
+        scepticValue: 0,
+        nextText: 28,
+      },
+    ],
+  },
+  {
+    id: 28,
+    img: 'img/pee_paper.png',
+    text: "<p>But it doesn't mean it's better for their health. OK. Got it. Still...</p>",
+    options: [
+      {
+        text: "Aren't you convinced?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 29,
+      },
+      {
+        text: "Still what? ",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+      {
+        text: "[Groan loudly]. This is like talking to a brick wall!",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+    ],
   },
 ]
 
