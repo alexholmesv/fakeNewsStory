@@ -14,7 +14,7 @@
 
 <body>
 
-<div id="header-message" class="header-box">NOW WITH FEWER FAKE NEWS!</div>
+<div id="header-message" class="header-box"></div>
 <div class="head">
   <div class="headerobjectswrapper">
     <button id="about-us" class="info-box" onclick="aboutUs()">About this Game</button>
@@ -41,7 +41,7 @@
 
 <!-- Sub header -->
 <div class="subhead">
-  <span>V. 0.8a</span>
+  <span>V. 0.9a</span>
   <span id="spanDate"></span>
   <span>Price: 0￠</span>
 <!--  <div id="logic-scorebox" class="scorebox">SCORE</div>-->
@@ -50,20 +50,30 @@
 </div>
 
 <div class="container">
-  <div class="image-container">
-    <div class="img-box fill fade-in">
-      <img id="image" class="box-img fade-in" src="">
+  <div class="flexcontainer">
+    <div id="text" class="box-text fade-in">Text</div>
+    <div class="image-container">
+      <div class="img-box fill fade-in">
+        <img id="image" class="box-img fade-in" src="">
+      </div>
     </div>
   </div>
-  <div class="flexcontainer">
     <div class="textcontainer">
-      <div id="text" class="box-text fade-in">Text</div>
       <div id="subtext" class="box-subtext">Additional text</div>
     </div>
     <div id="badge-box" class="badge-container">
-      <img id="logic-badge" class="badge-img" src="img/blank.png" ">
-      <img id="sceptic-badge" class="badge-img" src="img/blank.png" ">
-      <img id="emotion-badge" class="badge-img" src="img/blank.png" ">
+      <div>
+        <p>Logic</p>
+        <img id="logic-badge" class="badge-img" src="img/blank.png">
+      </div>
+      <div>
+        <p>Empathy</p>
+        <img id="emotion-badge" class="badge-img" src="img/blank.png">
+      </div>
+      <div>
+        <p>Scepticism</p>
+        <img id="sceptic-badge" class="badge-img" src="img/blank.png">
+      </div>
     </div>
     <div id="option-buttons" class="btn-grid">
       <button class="">Option 1</button>
@@ -71,12 +81,16 @@
       <button class="">Option 3</button>
       <button class="">Option 4</button>
     </div>
+
+
+<!--  DEBUG BUTTONS-->
+  <div id="debug-buttons">
+    <div id="ff-button" class="ff-btn-grid">
+      Skip intro <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9); showPoints()"></i></button>
+    </div>
+    <button onclick="bullyGameOver()">Game over</button>
+    </div>
   </div>
-  <div id="ff-button" class="ff-btn-grid">
-   Skip intro <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9)"></i></button>
-  </div>
-  <button onclick="bullyGameOver()">Game over</button>
-</div>
 
 <img class="border" src="img/border.png" alt="">
 
@@ -109,7 +123,7 @@
 <div id="game-over-conspiracy" class="modal">
   <div class="modal-content aligner">
     <img src="img/game_over.jpg" alt="">
-    <h2>Not everything is a conspiracy.</h2>
+    <h2>Come on! You're starting to sound a bit loopy.</h2>
     <p>Your tin foil hat is blocking your common sense.</p>
     <button class="btn try-again" onclick="replay()">Try again.</button>
     <button class="btn quit" onclick="quit()">I've had enough, get me out of here.</button>

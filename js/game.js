@@ -12,6 +12,7 @@ const gameOverBully = document.getElementById("game-over-bully")
 const gameOverConspiracy = document.getElementById("game-over-conspiracy")
 const statsModal = document.getElementById("stats-modal")
 const badgeContainer = document.getElementById("badge-box");
+const headerMessage = document.getElementById("header-message");
 
 // ACTIVATE TO SHOW SCORES, MUST CHANGE FUNCTIONS BELOW AND ADD HTML BOXES
 //const logicElement = document.getElementById('logic-scorebox');
@@ -37,6 +38,24 @@ const months = ['January','February','March','April','May','June','July',
 const tomorrow = new Date();
 tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
 document.getElementById("spanDate").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
+
+//Random header message
+function randomHeader() {
+  randomMessage = [
+    "Now with fewer fake news!",
+    "Thou shalt not lie",
+    "Fun with facts!",
+    "EXTRA! EXTRA!",
+    "Forecasters call for weather on Monday",
+    "Amphibious pitcher makes debut",
+    "Cows lose their jobs as milk prices drop",
+    "Miracle cure kills fifth patient",
+    "Man Accused of Killing Lawyer Receives a New Attorney",
+    "State population to double by 2040, babies to blame"
+  ]
+  const randomIndex = Math.round(Math.random*randomMessage.length);
+  headerMessage.innerText = randomMessage[Math.floor(Math.random() * randomMessage.length)]
+}
 
 // Get the About Us modal
 function aboutUs() {
@@ -200,7 +219,7 @@ function showTextNode(textNodeIndex) {
   if (sceptic >= 3) {
     scepticBadgeElement.src = "img/sceptic_logo_green.png";
     sceptic = 3;
-  } else if (sceptic > 0 && logic <=2) {
+  } else if (sceptic > 0 && sceptic <=2) {
     scepticBadgeElement.src = "img/sceptic_logo_yellow.png"
   } else if (sceptic === 0) {
     scepticBadgeElement.src = "img/sceptic_logo_red.png"
@@ -240,6 +259,9 @@ function showTextNode(textNodeIndex) {
 
 //Fast forward to scene function for debugging, scene number hardcoded in HTML
 function fastForward(scene) {
+  logic = 2;
+  emotion = 2;
+  sceptic = 2;
   showTextNode(scene);
 }
 
@@ -278,7 +300,12 @@ function selectOption(option) {
   showTextNode(nextTextNodeId)
 }
 
-
+function activateButton() {
+  console.log("clicked");
+  checkbox = document.getElementById("checkbox");
+  buttons = document.getElementById("option-buttons");
+  buttons.style.pointerEvents = "auto";
+}
 
 
 //MAIN STORY SCRIPT.
@@ -290,15 +317,16 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? <br><br>It will only take a few minutes, and it will help us with our research. You will be asked to do this survey one more time at the end of the game.</p>",
-    subtext: "<p'>The link will open in a new window. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p><br>" +
-      "<a href='https://forms.gle/xswyWcP6XnXf3MpN9' target='_blank'>Click here to access the survey</a>",
+    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' target='_blank' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? " +
+      "<br><br>It will only take a few minutes, and it will help us with our research. You will be asked to do this survey one more time at the end of the game.</p>"+
+      "<input type='checkbox' onclick='activateButton()'>&nbsp <strong>I've completed the survey.</strong></input>",
+    subtext: "<p'>All in-game links will open in a new tab. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
     options: [
       {
-        text: "<p id='start-btn' class='first-btn'>I've completed the survey!<br><span>Start the game</span></h2>",
-        logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
+        text: "<p id='start-btn' class='first-btn'><span>Start the game</span></h2>",
+        logicValue: 1,
+        emotionValue: 1,
+        scepticValue: 1,
         nextText: 2,
       },
     ]
@@ -323,7 +351,7 @@ const textNodes = [
         text: "<div id='about-us'>Sure, I hate people too.</div>",
         setState: { emotional: true },
         logicValue: 0,
-        emotionValue: 0,
+        emotionValue: -1,
         scepticValue: 0,
         nextText: 3,
       },
@@ -331,7 +359,7 @@ const textNodes = [
         text: "Well, true...but what's your point?",
         setState: { doubtful: true },
         logicValue: 0,
-        emotionValue: 1,
+        emotionValue: 0,
         scepticValue: 1,
         nextText: 3,
       },
@@ -340,9 +368,9 @@ const textNodes = [
         optionValue: 0,
         //Only shows this option if the required state has been saved
         requiredState: (currentState) => currentState.notnew,
-        logicValue: 4,
-        emotionValue: 4,
-        scepticValue: 4,
+        logicValue: 3,
+        emotionValue: 3,
+        scepticValue: 3,
         nextText: 9,
       }
     ]
@@ -371,7 +399,7 @@ const textNodes = [
       },
       {
         text: "Wait, what? No.",
-        logicValue: 1,
+        logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
         nextText: 4,
@@ -395,7 +423,7 @@ const textNodes = [
         requiredState: (currentState) => currentState.emotional,
         logicValue: 0,
         emotionValue: 0,
-        scepticValue: 0,
+        scepticValue: -1,
         setState: { conspiratorial: true, emotional: true },
         nextText: 5,
       },
@@ -421,9 +449,9 @@ const textNodes = [
         text: "Come on, just tell me what to think!",
         optionValue: 0,
         setState: { lazy: true },
-        logicValue: -1,
+        logicValue: 0,
         emotionValue: 0,
-        scepticValue: -1,
+        scepticValue: 0,
         nextText: 8,
       },
       {
@@ -431,7 +459,7 @@ const textNodes = [
         requiredState: (currentState) => currentState.conspiratorial,
         setState: { emotional: true },
         logicValue: 0,
-        emotionValue: -1,
+        emotionValue: 0,
         scepticValue: 0,
         nextText: 6,
       },
@@ -450,8 +478,6 @@ const textNodes = [
     img: 'img/woman-cat.jpg',
     text: "<p>Come on now.<br> This game might be just what you need, if you would only let me ruffle your tinfoil hat.</p>",
     setState: { notnew: true },
-    subtext: "<p>You may leave the game anytime just by closing this window.</p><br>" +
-      "<a href='http://www.google.com'>Take me to Google</a>",
     options: [
       {
         text: "OK, fine. Let's do this your way. Let's start again.",
@@ -481,6 +507,13 @@ const textNodes = [
         scepticValue: 0,
         nextText: 9,
       },
+      {
+        text: "<div onclick='showStats()'>All right, this could be interesting.</div> ",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 9,
+      },
     ]
   },
   {
@@ -490,34 +523,27 @@ const textNodes = [
     options: [
       {
         text: "<div onclick='showStats()'>Yes, all right. Show me.</div> ",
-        logicValue: 1,
-        emotionValue: 1,
-        scepticValue: 1,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 9,
       },
     ]
   },
   {
     id:9,
-    img: 'img/gender.jpg',
-    text: "<p>Before we begin, who do you want to be today?</p>",
+    img: 'img/urinals.jpg',
+    text: "<p>Before we begin, how do you feel about these objects in the image above?</p>",
     options: [
       {
-        text: "I want to be male",
+        text: "I use them often.",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
         nextText: 10,
       },
       {
-        text: "I want to be female",
-        logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
-        nextText: 10,
-      },
-      {
-        text: "I want to be a mystery",
+        text: "They don't apply to me.",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
@@ -560,13 +586,20 @@ const textNodes = [
     id:11,
     img: 'img/jpg',
     text: "<p>If you don't believe me, just google it. It's all there, I've done my research.</p>",
-    subtext: "<a href='https://www.google.com/search?rlz=1C5CHFA_enES922ES923&biw=1440&bih=702&sxsrf=ALeKk00U0GXtT-_kmVFrjLh3WjeiY40vBA%3A1614158978781&ei=ghw2YJmJL9LWgQbmxqDQAw&q=men+peeing+standing+up+is+bad+for+you&oq=men+peeing+standing+up+is+bad+for+you&gs_lcp=Cgdnd3Mtd2l6EAM6BAgjECc6BQgAEJECOgIIADoICC4QxwEQowI6BAguEEM6BAgAEEM6AgguOgUIABDLAToHCAAQhwIQFDoFCAAQhgNQgegLWNuODGDFkAxoAHACeACAAc4CiAGnOJIBCDAuMjkuOC4xmAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=gws-wiz&ved=0ahUKEwiZ0qnkmoLvAhVSa8AKHWYjCDoQ4dUDCA0&uact=5' target='_blank'>(Click here to google this. The page will open in a new tab).</a>",
+    subtext: "(All links will open in a new tab)",
     options: [
       {
-        text: "Ok, let's see what we have here...",
+        text: "Whatever, I trust you.",
         logicValue: 0,
+        emotionValue: 0,
+        scepticValue: -1,
+        nextText: 12,
+      },
+      {
+        text: "<div onclick='googlePee()'> [Google the search results].</div>",
+        logicValue: 1,
         emotionValue: 1,
-        scepticValue: 0,
+        scepticValue: 1,
         nextText: 12,
       },
       {
@@ -583,7 +616,7 @@ const textNodes = [
     img: 'img/jpg',
     text: "<p>See? Peeing standing up is bad for your health.</p>",
     options: [
-      //BIG BRANCH - GULLIBLE SET STRAIGHT
+
       {
         text: "Wow! I'm never peeing standing up again!",
         logicValue: 0,
@@ -591,7 +624,7 @@ const textNodes = [
         scepticValue: -1,
         nextText: 13,
       },
-      //BRANCH 2 - CONFIRM SUSPICION
+
       {
         text: "That's not accurate though, is it?",
         setState: { suspicious: true },
@@ -918,7 +951,7 @@ const textNodes = [
         logicValue: 1,
         emotionValue: 1,
         scepticValue: 0,
-        nextText: 26,
+        nextText: 27,
       },
       {
         text: "Come on, it's not that hard, just read the conclusion.",
@@ -961,17 +994,73 @@ const textNodes = [
   {
     id: 28,
     img: 'img/pee_paper.png',
-    text: "<p>But it doesn't mean it's better for their health. OK. Got it. Still...</p>",
+    text: "<p>OK, it doesn't mean it's <em>bad</em> for them. But it's certainly better.</p>",
     options: [
       {
-        text: "Aren't you convinced?",
+        text: "Why is that?",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 1,
         nextText: 29,
       },
       {
-        text: "Still what? ",
+        text: "Is there a good source to support that?",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 29,
+      },
+      {
+        text: "[Groan loudly]. This is like talking to a brick wall!",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 29,
+      },
+    ],
+  },
+  {
+    id: 29,
+    img: 'img/pee_paper.png',
+    text: "<p>All the sources agree on one thing: peeing sitting down is more hygienic.</p>",
+    options: [
+      {
+        text: "<div> Let's check <a>[look at the Google search results once more]</a>.</div>",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 29,
+      },
+      {
+        text: "I suppose that's true.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 30,
+      },
+      {
+        text: "Perhaps, but your original statement is still wrong.",
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 30,
+      },
+    ],
+  },
+  {
+    id: 30,
+    img: 'img/pee_paper.png',
+    text: "<p>All the sources agree on one thing: peeing sitting down is more hygienic.</p>",
+    options: [
+      {
+        text: "<div onclick='googlePee()'> Let's check [look at the Google search results once again].</div>",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 30,
+      },
+      {
+        text: "Ah. ",
         logicValue: 0,
         emotionValue: -1,
         scepticValue: 0,
@@ -986,10 +1075,65 @@ const textNodes = [
       },
     ],
   },
+  {
+    id: 31,
+    img: 'img/pee_paper.png',
+    text: "<p>So, would it be fair to say that peeing standing up is GOOD for your health?</p>",
+    options: [
+      {
+        text: "Well it depends. Is more hygienic the same as healthy?",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 31,
+      },
+      {
+        text: "That's a logical fallacy.",
+        logicValue: 1,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 31,
+      },
+      {
+        text: "I see where you're coming from, but this ",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 31,
+      },
+    ],
+  },
+  {
+    id: 31,
+    img: 'img/pee_paper.png',
+    text: "<p>Well, I'm convinced. Thanks for making me look at the data, I'm going to pee sitting down from now on. You should try it too.</p>",
+    options: [
+      {
+        text: "I could give it a go, but I'm not bothered either way.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 1,
+        nextText: 30,
+      },
+      {
+        text: "That's a logical fallacy.",
+        logicValue: 1,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+      {
+        text: "I see where you're coming from",
+        logicValue: 0,
+        emotionValue: 1,
+        scepticValue: 0,
+        nextText: 27,
+      },
+    ],
+  },
 ]
 
-
-
-
+//Call the random header
+randomHeader();
 //Starts game
 startGame();
