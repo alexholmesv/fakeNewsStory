@@ -142,6 +142,7 @@
 
   .btn {
     background-color: transparent;
+    cursor: pointer;
     border: 1px solid #2f2f2f;
     padding: 7px 12px;
     color: #2f2f2f;

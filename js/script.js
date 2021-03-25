@@ -2,25 +2,31 @@
 
 {
   id:310,
-    img: 'img/dad_covid.png',
+  img: 'img/dad_covid.png',
   text: "<h2>I just got this message from my dad. <br> Did you know there is a study that says that the new COVID-19 vaccine doesn't work?</h2>",
   subtext:"<div>You may open the link above <a href='https://cutt.ly/9hOZSFv' target='_blank'>here</a></div>",
   options: [
   {
     text: "Well, it doesn't surprise me. I mean, the vaccine is very new after all",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 311,
   },
   {
     text: "What do you mean it doesn't work? Are you sure this information is correct?",
     setState: { doubtful: true },
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 311,
   },
   {
     text: "Of course it doesn't, COVID is a hoax.",
     setState: { conspiratorial: true },
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 311,
   },
 ]
@@ -34,18 +40,24 @@
   options: [
   {
     text: "So you think this message is true just because your dad forwarded it?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 312,
   },
   {
     text: "Well, if you read the actual study you would see that it doesn't actually say that",
     setState: { logical: true },
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 322,
   },
   {
     text: "It's common sense man. This vaccine has been rushed into the market, it's all a sham to make money",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 312,
   },
 ]
@@ -59,18 +71,24 @@
   options: [
   {
     text: "Please do",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 313,
   },
   {
     text: "Wait! It could be a virus! I think we've established your dad cannot be trusted",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 313,
   },
   {
     text: "Open it, it doesn't really matter anyway.",
     requiredState: (currentState) => currentState.conspiratorial,
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 313,
   },
 ]
@@ -83,12 +101,16 @@
   {
     text: "But that doesn't mean that they are ineffective, especially now.",
     requiredState: (currentState) => currentState.logical,
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 322,
   },
   {
     text: "So, your dad's been lying?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 314,
   },
 ]
@@ -100,12 +122,16 @@
   options: [
   {
     text: "I'm sure he means well, but you have to admit that the message is super misleading.",
-    optionValue: 0,
+    logicValue: 0,
+emotionValue: 0,
+scepticValue: 0,
     nextText: 322,
   },
   {
     text: "Who cares if the message is inaccurate? Vaccines are evil, that's the truth.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     requiredState: (currentState) => currentState.conspiratorial,
     nextText: 315,
   },
@@ -115,7 +141,9 @@
   id:315,
     img: 'img/side_eye.png',
   text: "<h2>So, in order to find the truth we need to say things that aren't true? That makes no sense.</h2>",
-  optionValue: 0,
+  logicValue: 0,
+  emotionValue: 0,
+  scepticValue: 0,
   options: [
   {
     text: "All I'm saying is that I think vaccines are evil, " +
@@ -125,7 +153,9 @@
   },
   {
     text: "Well, if you put it that way...no, I guess not.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 322,
   },
 ]
@@ -159,7 +189,9 @@
   },
   {
     text: "OK whatever, let's change the subject",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 336,
   },
 ]
@@ -172,12 +204,16 @@
   options: [
   {
     text: "That's actually a good question. Who is behind this information?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 323,
   },
   {
     text: "No one should trust your dad. Ever.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     setState: { hater: true },
     nextText: 337,
   },
@@ -190,12 +226,16 @@
   options: [
   {
     text: "I want to know about the news site",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 324,
   },
   {
     text: "I want to know about the study",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 327,
   },
 ]
@@ -211,12 +251,16 @@
   options: [
   {
     text: "I checked their About page and they seem legit. Let's find out more about the study.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 327,
   },
   {
     text: "But what if they're lying?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 325,
   },
 ]
@@ -228,12 +272,16 @@
   options: [
   {
     text: "That makes sense. We've got to know who they are",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 326,
   },
   {
     text: "And if no one else has anything to say about them?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 325,
   },
 ]
@@ -245,12 +293,16 @@
   options: [
   {
     text: "...then they're probably not a very authoritative source. Yeah, let's move on to the study.",
-    optionValue: 1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 327,
   },
   {
     text: "...they're probably aliens.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 326,
   },
 ]
@@ -262,13 +314,17 @@
   options: [
   {
     text: "I know, I was just being funny.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 327,
   },
   {
     text: "If you say so [it's definitely aliens].",
     setState: { aliens : true },
-    optionValue: -1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 327,
   },
 ]
@@ -280,17 +336,23 @@
   options: [
   {
     text: "Should we look for the original paper?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 328,
   },
   {
     text: "What do other people say about this study?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 329,
   },
   {
     text: "I bet it's all a lie. Aliens are tricky like that.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     requiredState: (currentState) => currentState.aliens,
     nextText: 330,
   },
@@ -305,12 +367,16 @@
   options: [
   {
     text: "I can only see the abstract, but it says pretty much the same as the article.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 338,
   },
   {
     text: "This paper is boring. Do I really need to read it?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 331,
   },
 ]
@@ -324,7 +390,9 @@
   options: [
   {
     text: "OK, let's Google this",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 333,
   },
 ]
@@ -336,7 +404,9 @@
   options: [
   {
     text: "All right, calm down! [Are you sure you're not an alien?]",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 332,
   },
 ]
@@ -349,12 +419,16 @@
   options: [
   {
     text: "Well, we would have to make sure the news site is legit. And this one seems to be OK.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 334,
   },
   {
     text: "I would stay wary of every source anyway. Reading the paper abstract will always give me a better idea of what's going on.",
-    optionValue: 1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 334,
   },
 ]
@@ -366,12 +440,16 @@
   options: [
   {
     text: "Should we look for the original paper?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 328,
   },
   {
     text: "What do other people say about this study?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 329,
   },
 ]
@@ -383,12 +461,16 @@
   options: [
   {
     text: "So, most other sites say this study is about what the story actually claims. It checks out.",
-    optionValue: 1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 338,
   },
   {
     text: "So what? Everyone else could be lying too.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 334,
   },
 ]
@@ -400,12 +482,16 @@
   options: [
   {
     text: "I still need to check a few things",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 323,
   },
   {
     text: "Yes, I've had enough. Let's talk about something else.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 335,
   },
 ]
@@ -418,12 +504,16 @@
   options: [
   {
     text: "I guess so. We would have to check if this is not a study paid for by the Illuminati first.",
-    optionValue: -1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 323,
   },
   {
     text: "Well, it would help to know who's behind this information.",
-    optionValue: 1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 323,
   },
 ]
@@ -435,17 +525,23 @@
   options: [
   {
     text: "His message had nothing to do with the study. Shame on him.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 336,
   },
   {
     text: "His message had nothing to do with the study.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 336,
   },
   {
     text: "His message had nothing to do with the study. I admire that. ",
-    optionValue: -1,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 336,
   },
 ]
@@ -457,17 +553,23 @@
   options: [
   {
     text: "Probably find out what other people are saying about this study?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 329,
   },
   {
     text: "Make sure that it's not all a plot by the liberal media?",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 339,
   },
   {
     text: "We seem to be going round in circles, let's move on.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 339,
   },
 ]
@@ -479,12 +581,16 @@
   options: [
   {
     text: "Yes, it could be junk science.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 329,
   },
   {
     text: "Let's see what other people have to say about this study.",
-    optionValue: 0,
+    logicValue: 0,
+    emotionValue: 0,
+    scepticValue: 0,
     nextText: 329,
   },
 ]

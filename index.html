@@ -43,7 +43,7 @@
 <div class="subhead">
   <span>V. 0.9a</span>
   <span id="spanDate"></span>
-  <span>Price: 0￠</span>
+  <span>Price: <span id="total-score"></span></span>
 <!--  <div id="logic-scorebox" class="scorebox">SCORE</div>-->
 <!--  <div id="emotion-scorebox" class="scorebox">SCORE</div>-->
 <!--  <div id="sceptic-scorebox" class="scorebox">SCORE</div>-->
@@ -86,7 +86,7 @@
 <!--  DEBUG BUTTONS-->
   <div id="debug-buttons">
     <div id="ff-button" class="ff-btn-grid">
-      Skip intro <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(9); showPoints()"></i></button>
+      Skip intro <button class="ff-btn"><i class="fas fa-forward" onclick="fastForward(338); showPoints()"></i></button>
     </div>
     <button onclick="bullyGameOver()">Game over</button>
     </div>
@@ -105,6 +105,32 @@
     <p>You've opened new tabs in your browser and searched for multiple sources to check what others say about this content. You have developed Lateral Reading! </p>
     <p><em>(Try playing again as a different character to see if you can get all three badges).</em></p>
     <br>
+  </div>
+</div>
+
+<!--Click Restraint Trophy Modal-->
+<div id="click-restraint-modal" class="modal">
+  <div class="modal-content aligner">
+    <span class="close">&times;</span>
+    <img src="img/click_restraint.png" alt="">
+    <h2>CLICK RESTRAINT</h2>
+    <p>You've managed not to click on the first search hits, scrolling down the page to look for different information sources. You have developed Click Restraint!</p>
+    <br>
+    <button class="btn" onclick="showTextNode(34); closeCRTrophy()">Nice!</button>
+  </div>
+</div>
+
+<!--Checklisting Trophy Modal-->
+<div id="checklisting-modal" class="modal">
+  <div class="modal-content aligner">
+    <span class="close">&times;</span>
+    <img src="img/checklist.png" alt="">
+    <h2>CHECKLISTING</h2>
+    <p>Who is behind the information? What is the evidence? What do other sources say?</p>
+    <p>Asking yourself these questions can help you determine how truthful a source is.</p>
+    <p>You have developed Checklisting!</p>
+    <br>
+    <button class="btn" onclick="showTextNode(340); closeChecklistingTrophy()">Nice!</button>
   </div>
 </div>
 
