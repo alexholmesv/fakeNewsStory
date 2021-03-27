@@ -354,16 +354,34 @@ const textNodes = [
     id:1,
     img: 'img/logic.jpg',
     ff: true,
-    text: "<h2>Welcome!</h2><p>Before we start, would you please complete <a id='survey-link' target='_blank' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? " +
+    text: "<p>Before we start, would you please complete <a id='survey-link' target='_blank' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? " +
       "<br><br>It will only take a few minutes, and it will help us with our research. You will be asked to do this survey one more time at the end of the game.</p>"+
       "<input type='checkbox' onclick='activateButton()'>&nbsp <strong>I've completed the survey.</strong></input>",
     subtext: "<p'>All in-game links will open in a new tab. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
     options: [
       {
         text: "<p id='start-btn' class='first-btn'><span>Start the game</span></h2>",
-        logicValue: 1,
-        emotionValue: 1,
-        scepticValue: 1,
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 200,
+      },
+    ]
+  },
+  {
+    id:200,
+    img: 'img/logic.jpg',
+    ff: true,
+    text: "<h1>Welcome to Whaddafact!</h1><p>This game takes the form of a conversation on how to spot fake news. <br>Depending on your answers and your score, you may win trophies for different skills. See if you can get all three!</p>",
+    subtext: "<p>After a brief introduction, " +
+      "you will see three indicators for logic, empathy and scepticism. If you lose all your points in any of these categories, you will lose and have to start over.</p>" +
+      "<div style='display: inline-flex; gap:20px'><img src='img/logic_logo_green.png' class='badge-img'> <img src='img/empathy_logo_green.png' class='badge-img' alt=''><img src='img/sceptic_logo_green.png' class='badge-img' alt=''></div>",
+    options: [
+      {
+        text: "<p id='start-btn' class='first-btn'><span>Continue</span></h2>",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 2,
       },
     ]
@@ -1067,25 +1085,86 @@ const textNodes = [
         logicValue: 1,
         emotionValue: 0,
         scepticValue: 0,
-        nextText: 29,
+        nextText: 400,
       },
       {
         text: "I suppose that's true.",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
-        nextText: 30,
+        nextText: 400,
       },
       {
         text: "Perhaps, but your original statement is still wrong.",
         logicValue: 0,
         emotionValue: -1,
         scepticValue: 0,
+        nextText: 31,
+      },
+    ],
+  },
+  {
+    id: 400,
+    img: 'img/pee_paper.png',
+    text: "<h2>Should I open those pages too just to check?</h2>",
+    options: [
+      {
+        text: "<div> Yes, let's open all of them in new tabs.</div>",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 401,
+      },
+      {
+        text: "Nah, don't bother. Let's move on.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 31,
+      },
+    ],
+  },
+
+  //Start lateral reading path
+  {
+    id: 401,
+    img: 'img/pee_paper.png',
+    text: "<h2>All right, let's see what they all say</h2>",
+    options: [
+      {
+        text: "<div> Yeah, it's a good idea to compare what different sources say.</div>",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 402,
+      },
+      {
+        text: "On second thought, let's not do this anymore.",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
         nextText: 30,
       },
     ],
   },
   {
+    id: 402,
+    img: 'img/pee_paper.png',
+    text: "<h2>Well, they all seem to agree that peeing sitting down is more hygienic.</h2>",
+    options: [
+      {
+        text: "<div onclick='lateralReadingBadge()'> It seems to reduce splash back, it makes sense.</div>",
+        logicValue: 0,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 31,
+      },
+    ],
+  },
+
+  //Come back from lateral reading path
+  {
+    //CURRENTLY UNUSED
     id: 30,
     img: 'img/pee_paper.png',
     text: "<p>All the sources agree on one thing: peeing sitting down is more hygienic.</p>",
@@ -1123,21 +1202,21 @@ const textNodes = [
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 1,
-        nextText: 31,
+        nextText: 32,
       },
       {
         text: "That's a logical fallacy.",
         logicValue: 1,
         emotionValue: -1,
         scepticValue: 0,
-        nextText: 31,
+        nextText: 32,
       },
       {
         text: "I see where you're coming from. We could say that's up for debate.",
-        logicValue: 0,
+        logicValue: 1,
         emotionValue: 1,
         scepticValue: 0,
-        nextText: 31,
+        nextText: 32,
       },
     ],
   },
@@ -1193,7 +1272,7 @@ const textNodes = [
   {
     id: 34,
     img: 'img/.png',
-    text: "<h1>Thank you for playing!</h1>"+"<h2>Try playing another scenario to see if you can get all three trophies!</h2>",
+    text: "<h1>Thank you for playing!</h1>"+"<h2>Try playing another scenario and choosing different options to see if you can get all three trophies!</h2>",
     options: [
       {
         text: "I want to win! Take me to the other scenario!",

@@ -20,14 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5f3e490-f0b3-4d2a-9083-6a2e75dd2d4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/checklist.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/click_restraint.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/please.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kVZatEzrjz9hibZoDSadWt3XQL" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -81,7 +76,7 @@
       <workItem from="1615275227678" duration="23528000" />
       <workItem from="1616153870949" duration="1119000" />
       <workItem from="1616159858847" duration="3802000" />
-      <workItem from="1616403450721" duration="9231000" />
+      <workItem from="1616403450721" duration="12383000" />
     </task>
     <servers />
   </component>
