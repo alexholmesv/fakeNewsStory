@@ -16,6 +16,8 @@ const headerMessage = document.getElementById("header-message");
 const totalScore = document.getElementById("total-score");
 const clickRestraintModal = document.getElementById("click-restraint-modal");
 const checklistingModal = document.getElementById("checklisting-modal");
+const keywordValue = document.getElementById("keyword");
+const keywordButton = document.getElementById("keyword-btn");
 
 // ACTIVATE TO SHOW SCORES, MUST CHANGE FUNCTIONS BELOW AND ADD HTML BOXES
 //const logicElement = document.getElementById('logic-scorebox');
@@ -34,6 +36,12 @@ function startGame() {
   emotion = 0
   sceptic = 0
   showTextNode(1)
+}
+
+function getKeywordValue() {
+  totalScore.innerText = "Keyword:" + " " + keywordValue.value;
+  keywordValue.style.display = "none";
+  keywordButton.style.display = "none";
 }
 
 //Add date to header
@@ -61,8 +69,9 @@ function randomHeader() {
   headerMessage.innerText = randomMessage[Math.floor(Math.random() * randomMessage.length)]
 }
 
-//Show score on price box
-totalScore.innerText = scoreTally;
+//Show keyword on price box
+if (keywordValue.value) {totalScore.innerText = keywordValue.value; }
+
 
 // Get the About Us modal
 function aboutUs() {
@@ -355,7 +364,7 @@ const textNodes = [
     img: 'img/logic.jpg',
     ff: true,
     text: "<p>Before we start, would you please complete <a id='survey-link' target='_blank' href='https://forms.gle/xswyWcP6XnXf3MpN9'>this survey</a>? " +
-      "<br><br>It will only take a few minutes, and it will help us with our research. You will be asked to do this survey one more time at the end of the game.</p>"+
+      "<br><br>It will only take a couple of minutes, and it will greatly help us with our research. You will be asked to do this survey once more at the end of the game. It's super important that you do both!</p>"+
       "<input type='checkbox' onclick='activateButton()'>&nbsp <strong>I've completed the survey.</strong></input>",
     subtext: "<p'>All in-game links will open in a new tab. <br>Please <strong>do NOT refresh or leave this page</strong> while you play, or you will have to start all over again.</p>",
     options: [
@@ -379,9 +388,9 @@ const textNodes = [
     options: [
       {
         text: "<p id='start-btn' class='first-btn'><span>Continue</span></h2>",
-        logicValue: 0,
-        emotionValue: 0,
-        scepticValue: 0,
+        logicValue: 1,
+        emotionValue: 1,
+        scepticValue: 1,
         nextText: 2,
       },
     ]
@@ -464,7 +473,7 @@ const textNodes = [
   {
     id:4,
     img: 'img/makes_sense.jpg',
-    text: "<p>Just joking. You didn't think I was being serious, did you? <br>Of course, all information has some sort of bias, but that doesn't mean all information is created equal.<br> <span class='highlight'>Certain sources are much more reliable than others.</span></p>",
+    text: "<p>Just joking!<br>Of course all information has some sort of bias, but that doesn't mean all information is created equal.<br> <span class='highlight'>Certain sources are much more reliable than others.</span></p>",
     options: [
       {
         text: "Go on, I'm listening.",
@@ -492,6 +501,16 @@ const textNodes = [
         scepticValue: 1,
         nextText: 5,
       },
+      {
+        text: "This is stupid.",
+        optionValue: 0,
+        requiredState: (currentState) => currentState.doubtful,
+        setState: { emotional: false },
+        logicValue: 0,
+        emotionValue: -1,
+        scepticValue: 0,
+        nextText: 5,
+      },
     ]
   },
   {
@@ -503,10 +522,9 @@ const textNodes = [
       {
         text: "Come on, just tell me what to think!",
         optionValue: 0,
-        setState: { lazy: true },
         logicValue: 0,
         emotionValue: 0,
-        scepticValue: 0,
+        scepticValue: -1,
         nextText: 8,
       },
       {
@@ -549,21 +567,21 @@ const textNodes = [
     text: "<p>We're going to discuss a few strategies to help you master your fact-checking skills when looking at information online.</p>",
     options: [
       {
-        text: "<div onclick='showStats()'>Yes, please!</div> ",
+        text: "<div onclick='showStats()'>This sounds fun!</div> ",
         logicValue: 0,
         emotionValue: 1,
         scepticValue: 0,
         nextText: 9,
       },
       {
-        text: "<div onclick='showStats()'>Whatever.</div> ",
+        text: "<div onclick='showStats()'>Whatever, let's get on with this.</div> ",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
         nextText: 9,
       },
       {
-        text: "<div onclick='showStats()'>All right, this could be interesting.</div> ",
+        text: "<div onclick='showStats()'>I don't know if I should trust you, but I'm open to your ideas.</div> ",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 1,
@@ -583,12 +601,19 @@ const textNodes = [
         scepticValue: 0,
         nextText: 9,
       },
+      {
+        text: "<div onclick='showStats()'>Yeah, I was just joking. I just want to make sure your statements are valid, that's all.</div> ",
+        logicValue: 1,
+        emotionValue: 0,
+        scepticValue: 0,
+        nextText: 9,
+      },
     ]
   },
   {
     id:9,
     img: 'img/urinals.jpg',
-    text: "<p>Before we begin, how do you feel about these objects in the image above?</p>",
+    text: "<p>Before we begin, how do you feel about these objects in this image?</p>",
     options: [
       {
         text: "I use them often.",
@@ -598,7 +623,7 @@ const textNodes = [
         nextText: 10,
       },
       {
-        text: "They don't apply to me.",
+        text: "They don't apply to me / I don't use them.",
         logicValue: 0,
         emotionValue: 0,
         scepticValue: 0,
@@ -612,7 +637,7 @@ const textNodes = [
   {
     id:10,
     img: 'img/pee.png',
-    text: "<p>Ok, you might want to sit down for this revelation...</p><h2><strong>Did you know that science says that peeing standing up is bad for your health?</strong></h2><p>Men should sit down to pee.</p>",
+    text: "<h2>Ok, you might want to sit down for this revelation...</h2><h2><strong>Did you know that science says that peeing standing up is bad for your health?</strong></h2><p>Men should sit down to pee.</p>",
     options: [
       {
         text: "That's ridiculous",

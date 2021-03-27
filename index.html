@@ -43,7 +43,7 @@
 <div class="subhead">
   <span>V. 0.9a</span>
   <span id="spanDate"></span>
-  <span>Price: <span id="total-score"></span></span>
+  <span><span id="total-score">Price: $0.00</span></span>
 <!--  <div id="logic-scorebox" class="scorebox">SCORE</div>-->
 <!--  <div id="emotion-scorebox" class="scorebox">SCORE</div>-->
 <!--  <div id="sceptic-scorebox" class="scorebox">SCORE</div>-->
@@ -57,6 +57,10 @@
         <img id="image" class="box-img fade-in" src="">
       </div>
     </div>
+  </div>
+  <div class="keyword">
+    <input type="text" placeholder="Please enter the keyword from your survey" id="keyword">
+    <button type="button" id="keyword-btn" onclick="getKeywordValue();">Enter</button>
   </div>
     <div class="textcontainer">
       <div id="subtext" class="box-subtext">Additional text</div>

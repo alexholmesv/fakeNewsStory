@@ -129,6 +129,11 @@
     min-height: 100%
   }
 
+  .keyword input {
+    width: 300px;
+    align-self: center;
+  }
+
   .btn-grid {
     align-items: center;
     display: block;
